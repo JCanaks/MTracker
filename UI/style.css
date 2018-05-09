@@ -1,0 +1,28 @@
+.menubar {
+    display: flex;
+    justify-content: flex-end;
+    background-color:#ffffff;
+}
+
+
+.menubar a {
+    color: #000000;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.menubar a:hover {
+    color:#77b300;
+}
+
+.landing-body{
+    padding-top: 180px;
+    padding-bottom: 220px;
+    text-align: center;
+    background: #00ff55;  
+}
+
+.footer{
+    text-align: center;
+}
