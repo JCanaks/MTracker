@@ -1,3 +1,19 @@
+.resolve {background-color: #4CAF50;} 
+.resolve:hover {background-color: #46a049;}
+
+.approve {background-color: #2196F3;} 
+.approve:hover {background: #0b7dda;}
+
+.reject {background-color: #f44336;} 
+.reject:hover {background: #da190b;}
+
+.details-btn {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+}
 .view-div{
     width: 100%;
     height: 500px;
