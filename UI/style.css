@@ -14,7 +14,6 @@
     font-size: 16px;
     cursor: pointer;
 }
-
 .view-div{
     width: 100%;
     height: 500px;
@@ -24,31 +23,112 @@
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    margin-top: 1em;
 }
 
 .view-div td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+.view-div td{
+    font-size:12pt;
+    font-weight: 500;
+    color:  #404040;
+}
+.view-div th:nth-child(odd){
+   background-color: #ffb6b3;
+   color: black;
+}
+.view-div th:nth-child(even){
+    background-color: #84ddfb;
+    color: black;
+    
+ }
+
 
 .view-div tr:nth-child(even) {
     background-color: #dddddd;
 }
 .request-formlayout-left{
     float: left;
-    padding-left: 13em;
+    padding-left: 2em;
     padding-right: 2em;
+    padding-top: 1em;
+
 }
-.request-formlayout-left select{
-    margin-left: 0.5em;
-}
+
 .request-formlayout-right{
     float: left;
-    padding-left: 10em;
+    padding-left: 5em;
+    padding-top: 1em;
+    padding-bottom: 1em; 
+    
+}
+.request-form-font{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:12pt;
+    font-weight: 900;
+    color:  #666;
 }
 
+.request-form-font select{
+    width: 200px;
+    color:#737373;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size:12pt;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 0.5em;
+    margin-bottom: 10px;
+    padding: 3px;
+}
+.request-form-font textarea{
+    color:#737373;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size:12pt;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 2px;
+}
+.request-form-font input[type=submit]{
+    border: none;
+    color: white;
+    background-color: #ff554d;
+    padding: 6px;
+    font-size: 11pt;
+    font-weight: 900;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.request-top-row{
+  background-color:  #22c2f7;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  font-weight: 900;
+  border-radius: 5px;
+}
+.request-top-row > div {
+    text-align: left;
+    color: white;
+    margin-bottom: 0.1em;
+    margin-left:8px;
+    padding-top:0.2em;
+    padding-bottom:0.1em;
+  
+  }
 
+ 
 .signup-body{
     text-align: center;
     background-color: #22c2f7;
@@ -112,6 +192,7 @@
     border-radius: 4px;
     box-sizing: border-box;
     font-size:11pt;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .form-flex h1{
     margin-bottom: -0.1em;
