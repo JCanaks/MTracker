@@ -1,0 +1,39 @@
+{
+  "name": "mtracker",
+  "version": "1.0.0",
+  "description": "Simple Maintenance Tracker App",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "test": "mocha --compilers js:babel-core/register test/src/*.spec.js",
+    "start": "nodemon --exec babel-node ./src/index.js"   
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "ejs": "^2.6.1",
+    "express": "*",
+    "joi": "^13.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JCanaks/MTracker.git"
+  },
+  "author": "Jane C. Anaekwe",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.1",
+    "eslint-plugin-react": "^7.4.0",
+    "mocha": "^5.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/JCanaks/MTracker/issues"
+  },
+  "homepage": "https://github.com/JCanaks/MTracker#readme"
+}

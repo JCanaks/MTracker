@@ -1,0 +1,24 @@
+{
+    "extends": "airbnb",
+    "parserOptions":{
+        "ecmaVersion": 6
+    },
+    "env":{
+        "node": true,
+        "browser": true,
+        "es6":true
+    },
+    "rules":{   
+            "linebreak-style": 0,
+            "radix": ["error", "as-needed"],
+            "no-unused-vars":["error",
+            {
+              "vars":"local",
+              "args":"none"
+            }
+        ],
+        "no-undef":0,
+        "import/no-unresolved": "off",
+        "import/extensions": "off"
+    }
+}
