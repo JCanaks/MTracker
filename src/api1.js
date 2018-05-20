@@ -1,3 +1,4 @@
+import { joi, string, validate } from 'joi';
 import express, { json } from 'express';
 
 const app = express();
@@ -37,6 +38,15 @@ const requests = [
   },
 ];
 
+function validateCourse(request) {
+  if (!request.requestType || !request.requestDate || !request.email
+  || !request.department || !request.description || !request.requestLevel
+|| !request.requestDate || !request.status || !request.requestedBy) {
+    return false;
+  }
+  return true;
+}
+
 app.use(json());
 app.get('/', (req, res) => {
   res.send('Welcome To Maintenance Tracker App!');
@@ -53,6 +63,26 @@ app.get('/users/requests/:requestId', (req, res) => {
     return;
   }
 
+  res.send(request);
+});
+
+app.post('/users/requests', (req, res) => {
+  if (!validateCourse(req.body)) {
+    res.status(400).send('ERROR: All attributes of a request should be specified');
+    return;
+  }
+  const request = {
+    requestId: requests.length + 1,
+    requestType: req.body.requestType,
+    requestedBy: req.body.requestedBy,
+    email: req.body.email,
+    department: req.body.department,
+    description: req.body.description,
+    requestLevel: req.body.requestLevel,
+    requestDate: req.body.requestDate,
+    status: req.body.status,
+  };
+  requests.push(request);
   res.send(request);
 });
 
