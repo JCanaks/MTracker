@@ -1,4 +1,3 @@
-import { joi, string, validate } from 'joi';
 import express, { json } from 'express';
 
 const app = express();
@@ -59,7 +58,7 @@ app.get('/users/requests', (req, res) => {
 app.get('/users/requests/:requestId', (req, res) => {
   const request = requests.find(r => r.requestId === parseInt(req.params.requestId));
   if (!request) {
-    res.status(404).send('The course with the given id was not found');
+    res.status(404).send('The request with the given id was not found');
     return;
   }
 
@@ -86,5 +85,28 @@ app.post('/users/requests', (req, res) => {
   res.send(request);
 });
 
+app.put('/users/requests/:requestId', (req, res) => {
+  const request = requests.find(r => r.requestId === parseInt(req.params.requestId));
+  if (!request) {
+    res.status(404).send('The request with the given id was not found');
+    return;
+  }
+
+  if (!validateCourse(req.body)) {
+    res.status(400).send('ERROR: All attributes of a request should be specified');
+    return;
+  }
+
+  request.requestType = req.body.requestType;
+  request.requestedBy = req.body.requestedBy;
+  request.email = req.body.email;
+  request.department = req.body.department;
+  request.description = req.body.description;
+  request.requestLevel = req.body.requestLevel;
+  request.requestDate = req.body.requestDate;
+  request.status = req.body.status;
+
+  res.send(request);
+});
 
 export default app;
