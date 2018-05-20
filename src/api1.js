@@ -46,4 +46,15 @@ app.get('/users/requests', (req, res) => {
   res.send(requests);
 });
 
+app.get('/users/requests/:requestId', (req, res) => {
+  const request = requests.find(r => r.requestId === parseInt(req.params.requestId));
+  if (!request) {
+    res.status(404).send('The course with the given id was not found');
+    return;
+  }
+
+  res.send(request);
+});
+
+
 export default app;
