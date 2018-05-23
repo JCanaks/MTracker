@@ -1,9 +1,9 @@
 import express from 'express';
-import api1 from './api1';
+import server from './server';
 
 const app = express();
 
-app.use('/api/v1', api1);
+app.use('/api/v1', server);
 
 // PORT
 const port = process.env.PORT || 3000;
