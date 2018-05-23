@@ -83,3 +83,37 @@ describe('/POST requests', () => {
   });
 });
 
+describe('/PUT/:requestId requests', () => {
+  it('should update a request with the given id', (done) => {
+    const request = {
+      requestId: 1,
+      requestType: 'Repair',
+      requestedBy: 'Jane Anaekwe',
+      email: 'jane.anaekwe@mail.com',
+      department: 'Merchandising',
+      description: 'Repair of Department Printer',
+      requestLevel: 'Critical',
+      requestDate: '11-05-2018',
+      status: 'Pending',
+    };
+    chai.request(server)
+      .put(`/users/requests/${request.requestId}`)
+      .send({
+        requestId: 1,
+        requestType: 'Repair',
+        requestedBy: 'Jane Anaekwe',
+        email: 'jane.anaekwe@mail.com',
+        department: 'Sales',
+        description: 'Repair of Department Printer',
+        requestLevel: 'Critical',
+        requestDate: '11-05-2018',
+        status: 'Pending',
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.an('object');
+        res.body.should.have.property('department').eql('Sales');
+        done();
+      });
+  });
+});
