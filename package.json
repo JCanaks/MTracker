@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "build": "babel src -d dist",
-    "test": "mocha --compilers js:babel-core/register test/src/*.spec.js",
-    "start": "nodemon --exec babel-node ./src/index.js"
+    "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register test/src/*.spec.js",
+    "start": "nodemon --exec babel-node ./src/index.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
     "body-parser": "*",
@@ -26,12 +27,14 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
+    "coveralls": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.1",
     "eslint-plugin-react": "^7.4.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "nyc": "^11.8.0"
   },
   "bugs": {
     "url": "https://github.com/JCanaks/MTracker/issues"
