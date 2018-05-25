@@ -1,0 +1,10 @@
+{
+    "name": "Maintenance Tracker",
+    "description": "Tracks repairs and replacement requests.",
+    "keywords": [
+      "maintenance tracker",
+      "HTML5",
+      "productivity"
+    ],
+    "repository": "git+https://github.com/JCanaks/MTracker.git",
+  }
