@@ -38,12 +38,9 @@ const requests = [
 ];
 
 function validateCourse(request) {
-  if (!request.requestType || !request.requestDate || !request.email
+  return (!request.requestType || !request.requestDate || !request.email
   || !request.department || !request.description || !request.requestLevel
-|| !request.requestDate || !request.status || !request.requestedBy) {
-    return false;
-  }
-  return true;
+|| !request.requestDate || !request.status || !request.requestedBy);
 }
 
 app.use(json());
