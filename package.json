@@ -14,10 +14,11 @@
     "chai-http": "^4.0.0",
     "ejs": "^2.6.1",
     "express": "*",
-    "joi": "^13.3.0"
+    "joi": "^13.3.0",
+    "nodemon": "^1.17.5"
   },
   "engines": {
-    "node" : "8.11.2"
+    "node": "8.11.2"
   },
   "repository": {
     "type": "git",
