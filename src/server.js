@@ -38,9 +38,12 @@ const requests = [
 ];
 
 function validateCourse(request) {
-  return (!request.requestType || !request.requestDate || !request.email
+  if (!request.requestType || !request.requestDate || !request.email
   || !request.department || !request.description || !request.requestLevel
-|| !request.requestDate || !request.status || !request.requestedBy);
+|| !request.requestDate || !request.status || !request.requestedBy) {
+    return false;
+  }
+  return true;
 }
 
 app.use(json());
@@ -79,7 +82,7 @@ app.post('/users/requests', (req, res) => {
     status: req.body.status,
   };
   requests.push(request);
-  res.send(request);
+  res.status(200).send(request);
 });
 
 app.put('/users/requests/:requestId', (req, res) => {
