@@ -112,4 +112,27 @@ app.post('/requests', verifyToken, (req, res) => {
     });
   });
 });
+
+app.get('/requests', verifyToken, (req, res) => {
+  pool.connect((error, client, done) => {
+    if (error) {
+      console.log(`not able to get connection ${error}`);
+      res.status(400).send(error);
+    }
+    client.query('SELECT * from "request" where "userId" = $1', [req.userData.userId], (queryError, result) => {
+      done();
+      if (queryError) {
+        console.log(queryError);
+        res.status(400).send(queryError);
+      }
+      // res.status(200).send(result);
+      if (result.rows.length < 1) {
+        return res.status(400).json({
+          message: 'Could not get Requests',
+        });
+      }
+      res.status(200).send(result);
+    });
+  });
+});
 export default app;
