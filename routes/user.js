@@ -8,8 +8,6 @@ import pool from '../models/pool';
 import request from '../models/request';
 import verifyToken from '../middleware/verifyToken';
 
-console.log(request);
-
 dotenv.config();
 const app = express();
 
@@ -171,7 +169,7 @@ app.put('/requests/:requestId', verifyToken, (req, res) => {
         console.log(queryError);
         res.status(400).send(queryError);
       }
-      // res.status(200).send(result);
+
       if (result.rows.length < 1 || result.rows[0].requestStatus.trim() !== 'Pending') {
         return res.status(400).json({
           message: 'Cannot update request',
@@ -183,7 +181,6 @@ app.put('/requests/:requestId', verifyToken, (req, res) => {
       request.requestType = req.body.requestType;
       request.requestLevel = req.body.requestLevel;
 
-      console.log(request);
       client.query('UPDATE request set description = $1, department = $2 , "requestType"= $3, "requestLevel"= $4  where "requestId" = $5 and "userId" = $6', [request.description, request.department, request.requestType, request.requestLevel, req.params.requestId, req.userData.userId], (queryErr, reslt) => {
         done();
         if (queryError) {
@@ -191,7 +188,6 @@ app.put('/requests/:requestId', verifyToken, (req, res) => {
           res.status(400).send(queryError);
         }
         res.status(200).send('Request Updated');
-        console.log(reslt);
       });
       //   res.status(200).send(result);
     });
