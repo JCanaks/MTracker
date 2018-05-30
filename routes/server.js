@@ -1,4 +1,7 @@
+import dotenv from 'dotenv';
 import express, { json } from 'express';
+
+dotenv.config();
 
 const app = express();
 const requests = [
@@ -47,7 +50,7 @@ function validateCourse(request) {
 }
 
 app.use(json());
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
   res.send('Welcome To Maintenance Tracker App!');
 });
 
