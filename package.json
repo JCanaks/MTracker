@@ -6,16 +6,20 @@
   "scripts": {
     "build": "babel src -d dist",
     "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register test/src/*.spec.js",
-    "start": "nodemon --exec babel-node ./src/index.js",
+    "start": "nodemon --exec babel-node ./index.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "body-parser": "*",
     "chai-http": "^4.0.0",
+    "dotenv": "^5.0.1",
     "ejs": "^2.6.1",
     "express": "*",
     "joi": "^13.3.0",
-    "nodemon": "^1.17.5"
+    "jsonwebtoken": "^8.2.1",
+    "nodemon": "^1.17.5",
+    "pg": "^7.4.3"
   },
   "engines": {
     "node": "8.11.2"
