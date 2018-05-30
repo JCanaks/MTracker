@@ -4,19 +4,13 @@ import express, { json } from 'express';
 import pg from 'pg';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/user';
+import pool from '../models/pool';
+import request from '../models/request';
 import verifyToken from '../middleware/verifyToken';
 
 
 dotenv.config();
 const app = express();
-
-const pool = new pg.Pool({
-  user: process.env.USER,
-  database: process.env.DATABASE,
-  host: process.env.HOST,
-  password: process.env.PASSWORD,
-  port: 5432,
-});
 
 app.use(json());
 app.post('/signup', (req, res) => {
@@ -61,7 +55,7 @@ app.post('/login', (req, res) => {
         console.log(queryError);
         res.status(400).send(queryError);
       }
-      // res.status(200).send(result);
+
       if (result.rows.length < 1) {
         return res.status(401).json({
           message: 'Authentication Failed',
@@ -77,6 +71,7 @@ app.post('/login', (req, res) => {
           const token = jwt.sign({
             email: result.rows[0].userEmail.trim(),
             userId: result.rows[0].userId,
+            userFullname: result.rows[0].userFullname.trim(),
           }, process.env.JWT_SECRET_KEY, {
             expiresIn: '1h',
           });
@@ -89,6 +84,31 @@ app.post('/login', (req, res) => {
           message: 'Authentication Failed',
         });
       });
+    });
+  });
+});
+app.post('/requests', verifyToken, (req, res) => {
+  request.userId = req.userData.userId;
+  request.description = req.body.description;
+  request.department = req.body.department;
+  request.requestType = req.body.requestType;
+  request.requestedBy = req.userData.userFullname;
+  request.requestLevel = req.body.requestLevel;
+  request.requestStatus = 'Pending';
+  request.requestDate = new Date();
+
+  pool.connect((error, client, done) => {
+    if (error) {
+      console.log(`not able to get connection ${error}`);
+      res.status(400).send(error);
+    }
+    client.query('INSERT INTO request ("userId", description, department, "requestType", "requestedBy", "requestLevel", "requestStatus", "requestDate")VALUES($1, $2, $3, $4, $5, $6, $7, $8 )', [request.userId, request.description, request.department, request.requestType, request.requestedBy, request.requestLevel, request.requestStatus, request.requestDate], (queryError, result) => {
+      done();
+      if (queryError) {
+        console.log(queryError);
+        res.status(400).send(queryError);
+      }
+      res.status(200).send('Request Created!');
     });
   });
 });
