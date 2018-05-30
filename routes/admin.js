@@ -108,4 +108,39 @@ app.put('/:requestId/disapprove', verifyToken, (req, res) => {
   });
 });
 
+
+app.put('/:requestId/resolve', verifyToken, (req, res) => {
+  pool.connect((error, client, done) => {
+    if (error) {
+      console.log(`not able to get connection ${error}`);
+      res.status(400).send(error);
+    }
+    client.query('SELECT * from "userAccount" where "userId" =$1', [req.userData.userId], (queryError, result) => {
+      if (queryError) {
+        console.log(queryError);
+        res.status(400).send(queryError);
+      }
+
+      if (result.rows.length < 1 || result.rows[0].role.trim() === 'User') {
+        return res.status(400).json({
+          message: 'Unauthorized Request',
+        });
+      }
+
+      request.requestStatus = req.body.requestLevel;
+      request.requestId = req.body.requestId;
+
+      client.query('UPDATE request set "requestStatus"= $1 where "requestId" = $2', ['Resolved', req.params.requestId], (queryErr, reslt) => {
+        done();
+        if (queryError) {
+          console.log(queryError);
+          res.status(400).send(queryError);
+        }
+        res.status(200).send('Request Resolved');
+      });
+      //   res.status(200).send(result);
+    });
+  });
+});
+
 export default app;
