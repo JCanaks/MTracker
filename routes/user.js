@@ -8,6 +8,7 @@ import pool from '../models/pool';
 import request from '../models/request';
 import verifyToken from '../middleware/verifyToken';
 
+console.log(request);
 
 dotenv.config();
 const app = express();
@@ -155,6 +156,44 @@ app.get('/requests/:requestId', verifyToken, (req, res) => {
         });
       }
       res.status(200).send(result);
+    });
+  });
+});
+
+app.put('/requests/:requestId', verifyToken, (req, res) => {
+  pool.connect((error, client, done) => {
+    if (error) {
+      console.log(`not able to get connection ${error}`);
+      res.status(400).send(error);
+    }
+    client.query('SELECT * from "request" where "userId" = $1 and "requestId"=$2', [req.userData.userId, req.params.requestId], (queryError, result) => {
+      if (queryError) {
+        console.log(queryError);
+        res.status(400).send(queryError);
+      }
+      // res.status(200).send(result);
+      if (result.rows.length < 1 || result.rows[0].requestStatus.trim() !== 'Pending') {
+        return res.status(400).json({
+          message: 'Cannot update request',
+        });
+      }
+
+      request.description = req.body.description;
+      request.department = req.body.department;
+      request.requestType = req.body.requestType;
+      request.requestLevel = req.body.requestLevel;
+
+      console.log(request);
+      client.query('UPDATE request set description = $1, department = $2 , "requestType"= $3, "requestLevel"= $4  where "requestId" = $5 and "userId" = $6', [request.description, request.department, request.requestType, request.requestLevel, req.params.requestId, req.userData.userId], (queryErr, reslt) => {
+        done();
+        if (queryError) {
+          console.log(queryError);
+          res.status(400).send(queryError);
+        }
+        res.status(200).send('Request Updated');
+        console.log(reslt);
+      });
+      //   res.status(200).send(result);
     });
   });
 });
