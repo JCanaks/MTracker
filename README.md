@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/JCanaks/MTracker.svg?branch=develop)] [![Coverage Status](https://coveralls.io/repos/github/JCanaks/MTracker/badge.svg?branch=ch-heroku-hosting-157866846)](https://coveralls.io/github/JCanaks/MTracker?branch=ch-heroku-hosting-157866846)
 # MTracker
 Maintenance Tracking System for Tracking Repair and Replacement requests made by users. 
 
