@@ -7,36 +7,65 @@ import userModel from '../models/user';
 import pool from '../models/pool';
 import request from '../models/request';
 import verifyToken from '../middleware/verifyToken';
+import invalidProperty from '../middleware/invalidProperty';
 
 dotenv.config();
 const app = express();
 
 app.use(json());
 app.post('/signup', (req, res) => {
+  userModel.userFullname = req.body.userFullname;
+  userModel.role = req.body.role;
+  userModel.department = req.body.department;
+  userModel.userPassword = req.body.userPassword;
+  userModel.userEmail = req.body.userEmail;
+  userModel.userPhonenumber = req.body.userPhonenumber;
+
+  if (userModel == null || invalidProperty(userModel)) {
+    return res.status(400).send('Invalid Entry: Cannot Create User ');
+  }
   bcrypt.hash(req.body.userPassword, 10, (err, hash) => {
     if (err) {
       return res.status(500).json({
         error: err,
       });
     }
-    userModel.userFullname = req.body.userFullname;
-    userModel.role = req.body.role;
     userModel.userPassword = hash;
-    userModel.department = req.body.department;
-    userModel.userEmail = req.body.userEmail;
-    userModel.userPhonenumber = req.body.userPhonenumber;
     pool.connect((error, client, done) => {
       if (error) {
         console.log(`not able to get connection ${error}`);
         res.status(400).send(error);
       }
-      client.query('INSERT INTO "userAccount" ("userFullname", role, "userPassword", department, "userEmail", "userPhonenumber")VALUES($1, $2, $3, $4, $5, $6 )', [userModel.userFullname, userModel.role, userModel.userPassword, userModel.department, userModel.userEmail, userModel.userPhonenumber], (queryError, result) => {
-        done();
+      client.query('SELECT * from "userAccount" where "userEmail" = $1', [userModel.userEmail], (queryError, result) => {
         if (queryError) {
-          console.log(queryError);
-          res.status(400).send(queryError);
+          res.status(500).send('Could not create user account');
         }
-        res.status(200).send('Signup Sucessfull!');
+        if (result.rows.length > 0) {
+          return res.status(400).json({
+            message: 'Duplicate Email',
+          });
+        }
+        client.query('SELECT * from "userAccount" where "userPhonenumber" = $1', [userModel.userPhonenumber], (queryError1, result1) => {
+          done();
+          if (queryError1) {
+            res.status(500).send('Could not create user account');
+          }
+          if (result1.rows.length > 0) {
+            return res.status(400).json({
+              message: 'Duplicate Phonenumber',
+            });
+          }
+          client.query('INSERT INTO "userAccount" ("userFullname", role, "userPassword", department, "userEmail", "userPhonenumber")VALUES($1, $2, $3, $4, $5, $6 )', [userModel.userFullname, userModel.role, userModel.userPassword, userModel.department, userModel.userEmail, userModel.userPhonenumber], (queryError1, result1) => {
+            done();
+            if (queryError1) {
+              res.status(500).send('Could not create user account');
+            }
+            return res.status(200).json({
+              message: 'Sucessfull Signup',
+              userModel,
+            });
+          });
+        });
       });
     });
   });
@@ -96,6 +125,10 @@ app.post('/requests', verifyToken, (req, res) => {
   request.requestStatus = 'Pending';
   request.requestDate = new Date();
 
+  if (request == null || invalidProperty(request)) {
+    return res.status(400).send('Invalid Entry: Cannot Create Request ');
+  }
+
   pool.connect((error, client, done) => {
     if (error) {
       console.log(`not able to get connection ${error}`);
@@ -107,7 +140,10 @@ app.post('/requests', verifyToken, (req, res) => {
         console.log(queryError);
         res.status(400).send(queryError);
       }
-      res.status(200).send('Request Created!');
+      return res.status(200).json({
+        message: 'Request Created',
+        request,
+      });
     });
   });
 });
@@ -126,11 +162,11 @@ app.get('/requests', verifyToken, (req, res) => {
       }
       // res.status(200).send(result);
       if (result.rows.length < 1) {
-        return res.status(400).json({
-          message: 'Could not get Requests',
+        return res.status(404).json({
+          message: 'Requests not found',
         });
       }
-      res.status(200).send(result);
+      res.status(200).send(result.rows);
     });
   });
 });
@@ -149,16 +185,25 @@ app.get('/requests/:requestId', verifyToken, (req, res) => {
       }
       // res.status(200).send(result);
       if (result.rows.length < 1) {
-        return res.status(400).json({
-          message: 'Could not get Requests',
+        return res.status(404).json({
+          message: 'Request not found',
         });
       }
-      res.status(200).send(result);
+      res.status(200).send(result.rows);
     });
   });
 });
 
 app.put('/requests/:requestId', verifyToken, (req, res) => {
+  request.description = req.body.description;
+  request.department = req.body.department;
+  request.requestType = req.body.requestType;
+  request.requestLevel = req.body.requestLevel;
+
+  if (request == null || invalidProperty(request)) {
+    return res.status(400).send('Invalid Entry: Cannot Update Request');
+  }
+
   pool.connect((error, client, done) => {
     if (error) {
       console.log(`not able to get connection ${error}`);
@@ -171,15 +216,10 @@ app.put('/requests/:requestId', verifyToken, (req, res) => {
       }
 
       if (result.rows.length < 1 || result.rows[0].requestStatus.trim() !== 'Pending') {
-        return res.status(400).json({
+        return res.status(404).json({
           message: 'Cannot update request',
         });
       }
-
-      request.description = req.body.description;
-      request.department = req.body.department;
-      request.requestType = req.body.requestType;
-      request.requestLevel = req.body.requestLevel;
 
       client.query('UPDATE request set description = $1, department = $2 , "requestType"= $3, "requestLevel"= $4  where "requestId" = $5 and "userId" = $6', [request.description, request.department, request.requestType, request.requestLevel, req.params.requestId, req.userData.userId], (queryErr, reslt) => {
         done();
@@ -187,9 +227,14 @@ app.put('/requests/:requestId', verifyToken, (req, res) => {
           console.log(queryError);
           res.status(400).send(queryError);
         }
-        res.status(200).send('Request Updated');
+        return res.status(200).json({
+          message: 'Request Updated',
+          description: request.description,
+          department: request.department,
+          requestType: request.requestType,
+          requestLevel: request.requestLevel,
+        });
       });
-      //   res.status(200).send(result);
     });
   });
 });
