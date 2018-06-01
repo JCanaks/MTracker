@@ -77,7 +77,7 @@ app.post('/login', (req, res) => {
       console.log(`not able to get connection ${error}`);
       res.status(400).send(error);
     }
-    client.query('SELECT * from "userAccount" where "userEmail" = $1', [req.body.userEmail], (queryError, result) => {
+    client.query('SELECT * from "useraccount" where "useremail" = $1', [req.body.userEmail], (queryError, result) => {
       done();
       if (queryError) {
         console.log(queryError);
