@@ -86,13 +86,13 @@ app.post('/login', (req, res) => {
 
       if (result.rows.length < 1) {
         return res.status(401).json({
-          message: 'Authentication Failed',
+          message: 'Authentication Failed1',
         });
       }
       bcrypt.compare(req.body.userPassword, result.rows[0].userPassword, (err, response) => {
         if (err) {
           return res.status(401).json({
-            message: 'Authentication Failed',
+            message: 'Authentication Failed2',
           });
         }
         if (response) {
@@ -109,7 +109,7 @@ app.post('/login', (req, res) => {
           });
         }
         res.status(401).json({
-          message: 'Authentication Failed',
+          message: 'Authentication Failed3',
         });
       });
     });
