@@ -35,7 +35,7 @@ app.get('/', verifyToken, (req, res) => {
           console.log(queryError);
           res.status(400).send(queryError);
         }
-        res.status(200).send(reslt);
+        res.status(200).send(reslt.rows);
       });
     });
   });
@@ -59,16 +59,17 @@ app.put('/:requestId/approve', verifyToken, (req, res) => {
         });
       }
 
-      //   request.requestStatus = req.body.requestLevel;
-      //   request.requestId = req.body.requestId;
-
+      const requestID = req.params.requestId;
       client.query('UPDATE request set "requestStatus"= $1 where "requestId" = $2', ['Approved', req.params.requestId], (queryErr, reslt) => {
         done();
         if (queryError) {
           console.log(queryError);
           res.status(400).send(queryError);
         }
-        res.status(200).send('Request Approved');
+        return res.status(200).json({
+          message: 'Request Approved',
+          requestID,
+        });
       });
     });
   });
@@ -95,13 +96,17 @@ app.put('/:requestId/disapprove', verifyToken, (req, res) => {
       request.requestStatus = req.body.requestLevel;
       request.requestId = req.body.requestId;
 
+      const requestID = req.params.requestId;
       client.query('UPDATE request set "requestStatus"= $1 where "requestId" = $2', ['Disapproved', req.params.requestId], (queryErr, reslt) => {
         done();
         if (queryError) {
           console.log(queryError);
           res.status(400).send(queryError);
         }
-        res.status(200).send('Request Disapproved');
+        return res.status(200).json({
+          message: 'Request Disapproved',
+          requestID,
+        });
       });
       //   res.status(200).send(result);
     });
@@ -130,15 +135,18 @@ app.put('/:requestId/resolve', verifyToken, (req, res) => {
       request.requestStatus = req.body.requestLevel;
       request.requestId = req.body.requestId;
 
+      const requestID = req.params.requestId;
       client.query('UPDATE request set "requestStatus"= $1 where "requestId" = $2', ['Resolved', req.params.requestId], (queryErr, reslt) => {
         done();
         if (queryError) {
           console.log(queryError);
           res.status(400).send(queryError);
         }
-        res.status(200).send('Request Resolved');
+        return res.status(200).json({
+          message: 'Request Resolved',
+          requestID,
+        });
       });
-      //   res.status(200).send(result);
     });
   });
 });
