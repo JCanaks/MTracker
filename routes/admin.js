@@ -3,7 +3,7 @@ import express, { json } from 'express';
 import pg from 'pg';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/user';
-import pool from '../models/pool';
+import pool from '../middleware/pool';
 import request from '../models/request';
 import verifyToken from '../middleware/verifyToken';
 
@@ -59,7 +59,7 @@ app.put('/:requestId/approve', verifyToken, (req, res) => {
         });
       }
 
-      const requestID = req.params.requestId;
+      const requestId = req.params.requestId;
       client.query('UPDATE request set "requestStatus"= $1 where "requestId" = $2', ['Approved', req.params.requestId], (queryErr, reslt) => {
         done();
         if (queryError) {
@@ -68,7 +68,7 @@ app.put('/:requestId/approve', verifyToken, (req, res) => {
         }
         return res.status(200).json({
           message: 'Request Approved',
-          requestID,
+          requestId,
         });
       });
     });
@@ -96,7 +96,7 @@ app.put('/:requestId/disapprove', verifyToken, (req, res) => {
       request.requestStatus = req.body.requestLevel;
       request.requestId = req.body.requestId;
 
-      const requestID = req.params.requestId;
+      const requestId = req.params.requestId;
       client.query('UPDATE request set "requestStatus"= $1 where "requestId" = $2', ['Disapproved', req.params.requestId], (queryErr, reslt) => {
         done();
         if (queryError) {
@@ -105,10 +105,9 @@ app.put('/:requestId/disapprove', verifyToken, (req, res) => {
         }
         return res.status(200).json({
           message: 'Request Disapproved',
-          requestID,
+          requestId,
         });
       });
-      //   res.status(200).send(result);
     });
   });
 });
@@ -135,7 +134,7 @@ app.put('/:requestId/resolve', verifyToken, (req, res) => {
       request.requestStatus = req.body.requestLevel;
       request.requestId = req.body.requestId;
 
-      const requestID = req.params.requestId;
+      const requestId = req.params.requestId;
       client.query('UPDATE request set "requestStatus"= $1 where "requestId" = $2', ['Resolved', req.params.requestId], (queryErr, reslt) => {
         done();
         if (queryError) {
@@ -144,7 +143,7 @@ app.put('/:requestId/resolve', verifyToken, (req, res) => {
         }
         return res.status(200).json({
           message: 'Request Resolved',
-          requestID,
+          requestId,
         });
       });
     });

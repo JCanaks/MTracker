@@ -3,7 +3,7 @@ let user = {
   role: String,
   userPassword: String,
   department: String,
-  UserEmail: String,
+  userEmail: String,
   userPhonenumber: String,
 };
 export default user;
