@@ -5,8 +5,11 @@
   "main": "src/index.js",
   "scripts": {
     "build": "babel src -d dist",
-    "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register test/src/*.spec.js",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register test/routes/*.spec.js",
+    "pretest": "cross-env NODE_ENV=test babel-node ./database-setup/create-test-table.js && cross-env NODE_ENV=test babel-node ./database-setup/insert.js",
+    "posttest": "cross-env NODE_ENV=test babel-node ./database-setup/drop-test-table.js",
     "start": "nodemon --exec babel-node ./index.js",
+    "start-dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./index.js",
     "create-table": "babel-node ./database-setup/create-table.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -37,6 +40,7 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
+    "cross-env": "^5.1.6",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.7.0",
