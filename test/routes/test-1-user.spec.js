@@ -10,7 +10,6 @@ let token;
 describe('Test User API Routes', () => {
   const user = {
     userFullname: 'Peter Simon',
-    role: 'User',
     department: 'Sales',
     userPassword: '5555',
     userEmail: 'peter@mail.com',
@@ -41,7 +40,6 @@ describe('Test User API Routes', () => {
           res.body.should.have.property('message').equal('Sucessfull Signup');
           res.body.should.have.property('userFullname').equal(user.userFullname);
           res.body.should.have.property('userEmail').equal(user.userEmail);
-          res.body.should.have.property('role').equal(user.role);
           res.body.should.have.property('department').equal(user.department);
           done();
         });
