@@ -1,4 +1,4 @@
-import pool from '../middleware/pool'; 
+import pool from '../middleware/pool';
 
 pool.connect((error, client, done) => {
   if (error) {
