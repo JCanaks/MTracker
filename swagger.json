@@ -1,0 +1,427 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "An API for Tracking repairs and replacements requests in an organisation",
+    "version" : "1.0.0",
+    "title" : "Maintenance Tracker API"
+  },
+  "host" : "mntracker.herokuapp.com",
+  "basePath" : "/api/v1",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/auth/signup" : {
+      "post" : {
+        "tags" : [ "Authentication" ],
+        "summary" : "Signups User",
+        "description" : "Signs up a user, once the appropriate information is entered into the necessary fields\n",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "User",
+          "description" : "The user to be signed up.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/User"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User succesfully signedup."
+          },
+          "400" : {
+            "description" : "Unable to create user."
+          }
+        }
+      }
+    },
+    "/auth/login" : {
+      "post" : {
+        "tags" : [ "Authentication" ],
+        "summary" : "Logins User",
+        "description" : "Logins a user (either an admin or a simple user), once the appropriate login details is entered into the necessary fields\n",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Login details",
+          "description" : "The login details of a user",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Login details"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User sucessfully logged in."
+          },
+          "401" : {
+            "description" : "User authentication Failed."
+          }
+        }
+      }
+    },
+    "/users/requests" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "Gets all requests of a user",
+        "description" : "Gets all maintenance or repair requests of a logged in user",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A list of requests",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/inline_response_200"
+              }
+            }
+          },
+          "401" : {
+            "description" : "User authentication Failed."
+          },
+          "404" : {
+            "description" : "The Request was not found"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "User" ],
+        "summary" : "Creates a user request",
+        "description" : "Creates a maintenance or repair request for a user \n",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Request Details",
+          "description" : "The details of a request",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Request Details"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request Sucessfully Created."
+          },
+          "400" : {
+            "description" : "Unable to Create Request."
+          },
+          "401" : {
+            "description" : "User authentication Failed."
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/users/requests/{requestId}" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "Gets a particular user request",
+        "description" : "Returns a maintenance or repair request of a logged in user",
+        "parameters" : [ {
+          "name" : "requestId",
+          "in" : "path",
+          "description" : "The request Id",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "A request",
+            "schema" : {
+              "type" : "object",
+              "properties" : { }
+            }
+          },
+          "401" : {
+            "description" : "User authentication Failed."
+          },
+          "404" : {
+            "description" : "The Request was not found"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      },
+      "put" : {
+        "tags" : [ "User" ],
+        "summary" : "Updates a particular request",
+        "description" : "Updates a maintenance or repair request of a logged in user",
+        "parameters" : [ {
+          "name" : "requestId",
+          "in" : "path",
+          "description" : "The request Id",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "in" : "body",
+          "name" : "Update Details",
+          "description" : "Request details to update",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Update Details"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request sucessfully updated"
+          },
+          "401" : {
+            "description" : "User authentication Failed."
+          },
+          "404" : {
+            "description" : "The Request was not found"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/requests" : {
+      "get" : {
+        "tags" : [ "Admin" ],
+        "summary" : "Gets requests of all users",
+        "description" : "Gets all maintenance or repair requests of all users of the system",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "A list of all user requests",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/inline_response_200"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthourized Request/Authentication Failed"
+          },
+          "404" : {
+            "description" : "Requests was not found"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/requests/{requestId}/approve" : {
+      "put" : {
+        "tags" : [ "Admin" ],
+        "summary" : "Approves a request",
+        "description" : "Approves a user's request",
+        "parameters" : [ {
+          "name" : "requestId",
+          "in" : "path",
+          "description" : "The request Id",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request sucessfully approved"
+          },
+          "401" : {
+            "description" : "Unauthourized Request/Authentication Failed"
+          },
+          "404" : {
+            "description" : "The Request was not found"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/requests/{requestId}/disapprove" : {
+      "put" : {
+        "tags" : [ "Admin" ],
+        "summary" : "Disapproves a request",
+        "description" : "Disapproves a user's request",
+        "parameters" : [ {
+          "name" : "requestId",
+          "in" : "path",
+          "description" : "The request Id",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request sucessfully disapproved"
+          },
+          "401" : {
+            "description" : "Unauthourized Request/Authentication Failed"
+          },
+          "404" : {
+            "description" : "The Request was not found"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/requests/{requestId}/resolve" : {
+      "put" : {
+        "tags" : [ "Admin" ],
+        "summary" : "Resolves a request",
+        "description" : "Resolves a user's request",
+        "parameters" : [ {
+          "name" : "requestId",
+          "in" : "path",
+          "description" : "The request Id",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request sucessfully resolved"
+          },
+          "401" : {
+            "description" : "Unauthourized Request/Authentication Failed"
+          },
+          "404" : {
+            "description" : "The Request was not found"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "Bearer" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "Request Details" : {
+      "required" : [ "description", "requestLevel", "requestType" ],
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        },
+        "requestType" : {
+          "type" : "string"
+        },
+        "requestLevel" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "requestType" : "requestType",
+        "description" : "description",
+        "requestLevel" : "requestLevel"
+      }
+    },
+    "User" : {
+      "required" : [ "department", "userEmail", "userFullname", "userPassword", "userPhonenumber" ],
+      "properties" : {
+        "userFullname" : {
+          "type" : "string"
+        },
+        "userPassword" : {
+          "type" : "string"
+        },
+        "department" : {
+          "type" : "string"
+        },
+        "userEmail" : {
+          "type" : "string"
+        },
+        "userPhonenumber" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "userPassword" : "userPassword",
+        "userPhonenumber" : "userPhonenumber",
+        "userFullname" : "userFullname",
+        "userEmail" : "userEmail",
+        "department" : "department"
+      }
+    },
+    "inline_response_200" : {
+      "required" : [ "department", "description", "requestDate", "requestId", "requestLevel", "requestStatus", "requestType", "requestedBy", "userId" ],
+      "properties" : {
+        "requestId" : {
+          "type" : "integer"
+        },
+        "userId" : {
+          "type" : "integer"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "department" : {
+          "type" : "string"
+        },
+        "requestType" : {
+          "type" : "string"
+        },
+        "requestedBy" : {
+          "type" : "string"
+        },
+        "requestLevel" : {
+          "type" : "string"
+        },
+        "requestStatus" : {
+          "type" : "string"
+        },
+        "requestDate" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "requestedBy" : "requestedBy",
+        "requestType" : "requestType",
+        "requestId" : 0,
+        "requestDate" : "requestDate",
+        "description" : "description",
+        "department" : "department",
+        "userId" : 6,
+        "requestLevel" : "requestLevel",
+        "requestStatus" : "requestStatus"
+      }
+    },
+    "Update Details" : {
+      "required" : [ "description", "requestLevel", "requestType" ],
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        },
+        "requestType" : {
+          "type" : "string"
+        },
+        "requestLevel" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "requestType" : "requestType",
+        "description" : "description",
+        "requestLevel" : "requestLevel"
+      }
+    },
+    "Login details" : {
+      "required" : [ "userEmail", "userPassword" ],
+      "properties" : {
+        "userEmail" : {
+          "type" : "string"
+        },
+        "userPassword" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "userPassword" : "userPassword",
+        "userEmail" : "userEmail"
+      }
+    }
+  }
+}

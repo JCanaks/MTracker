@@ -26,6 +26,12 @@ export function getUserRequests(req, res) {
             message: `${queryErr}`,
           });
         }
+
+        if (reslt.rows.length < 1) {
+          return res.status(404).json({
+            message: 'Request Not Found',
+          });
+        }
         return res.status(200).send(reslt.rows);
       });
     });
@@ -47,7 +53,7 @@ export function approveRequest(req, res) {
       }
 
       if (result.rows.length < 1 || result.rows[0].role.trim() === 'User') {
-        return res.status(400).json({
+        return res.status(401).json({
           message: 'Unauthorized Request',
         });
       }
