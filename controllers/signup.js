@@ -53,7 +53,7 @@ export default function (req, res) {
               });
             }
             return res.status(200).json({
-              message: 'Sucessfull Signup',
+              message: 'Sucessfull Signup You can now create requests',
               userFullname: userModel.userFullname,
               userEmail: userModel.userEmail,
               role: userModel.role,
