@@ -20,5 +20,8 @@
         "no-undef":0,
         "import/no-unresolved": "off",
         "import/extensions": "off"
-    }
+    },
+    "plugins": [
+        "html"
+    ]
 }

@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+
+<head>
+    <title> View Requests</title>
+    <link rel="stylesheet" href="style.css">
+    <script src='scripts/create-request.js'> </script>
+</head>
+
+<body>
+    <p id="success"></p>
+    <div class="bodymenu">
+        <div>
+            <div class="menubar2">
+                <a href="index.html">Home</a>
+                <a href="signin.html">Sign Out</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="request-top-row">
+            <div>
+                <img src="Images/wheel-review-page.png">
+            </div>
+            <div class="text-margin1">Maintenance Tracker Request View</div>
+            
+        </div>
+        <div class="request-form-font">
+            <form>
+                <div class="request-formlayout-left">
+                    <table>
+                        <tr>
+                            <td>
+                                <span>Request Type:</span>
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="Repair">Repair</option>
+                                    <option value="Maintenance">Maintenance</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Department:</td>
+                            <td>
+                                <select>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="Merchandising">Merchandising</option>
+                                    <option value="Human Resourse">Human Resourse</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Request Level:</td>
+                            <td>
+                                <select>
+                                    <option value="Critical">Critical</option>
+                                    <option value="Major">Major</option>
+                                    <option value="Minor">Minor</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="request-formlayout-right">
+                    <table>
+                        <tr>
+                            <td>
+                                <textarea rows="3" cols="50">Type Request Description Here</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="butn-align">
+                                <input type="submit" value="Create Request">
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </form>
+
+        </div>
+        <div class="view-div">
+            <table>
+                <tr>
+                    <th>Request Type</th>
+                    <th>Description</th>
+                    <th>Department</th>
+                    <th>Request Level</th>
+                    <th>Status</th>
+                    <th>Details</th>
+
+                </tr>
+                <tr>
+                    <td>Repair</td>
+                    <td>Request Description</td>
+                    <td>Marketing</td>
+                    <td>Critical</td>
+                    <td>Approved</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Maintenance</td>
+                    <td>Request Description</td>
+                    <td>Sales</td>
+                    <td>Critical</td>
+                    <td>Pending</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Repair</td>
+                    <td>Request Description</td>
+                    <td>Marketing</td>
+                    <td>Major</td>
+                    <td>Rejected</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Maintenance</td>
+                    <td>Request Description</td>
+                    <td>Sales</td>
+                    <td>Minor</td>
+                    <td>Approved</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Repair</td>
+                    <td>Request Description</td>
+                    <td>Marketing</td>
+                    <td>Critical</td>
+                    <td>Pending</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Maintenance</td>
+                    <td>Request Description</td>
+                    <td>Sales</td>
+                    <td>Minor</td>
+                    <td>Approved</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Repair</td>
+                    <td>Request Description</td>
+                    <td>Marketing</td>
+                    <td>Major</td>
+                    <td>Rejected</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Maintenance</td>
+                    <td>Request Description</td>
+                    <td>Sales</td>
+                    <td>Minor</td>
+                    <td>Approved</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Repair</td>
+                    <td>Request Description</td>
+                    <td>Marketing</td>
+                    <td>Critical</td>
+                    <td>Pending</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Maintenance</td>
+                    <td>Request Description</td>
+                    <td>Sales</td>
+                    <td>Minor</td>
+                    <td>Approved</td>
+                    <td>
+                        <a href="user-request-details.html">View Details</a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
