@@ -42,6 +42,7 @@ export default function (req, res) {
           return res.status(200).json({
             message: 'Authentication Sucessful, You are now Logged in',
             token,
+            role: result.rows[0].role,
           });
         }
         res.status(401).json({

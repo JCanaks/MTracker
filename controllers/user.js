@@ -63,7 +63,7 @@ export function getRequest(req, res) {
         message: `${error}`,
       });
     }
-    client.query('SELECT * from "request" where "userId" = $1 and "requestId"=$2', [req.userData.userId, req.params.requestId], (queryError, result) => {
+    client.query('SELECT * from "request" where "requestId"=$1', [req.params.requestId], (queryError, result) => {
       done();
       if (queryError) {
         return res.status(400).json({

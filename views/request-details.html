@@ -4,9 +4,19 @@
 <head>
     <title>Request Details</title>
     <link rel="stylesheet" href="style.css">
+    <script src='scripts/admin-details.js'> </script>
 </head>
 
 <body>
+    <div class="bodymenu">
+        <div>
+            <div class="menubar2">
+                <a href="index.html">Home</a>
+                <a href="admin-request.html">Back</a>
+                <a href="signin.html">Sign Out</a>
+            </div>
+        </div>
+    </div>
     <div>
         <div class="request-details-top-row">
             <div>
@@ -15,50 +25,19 @@
             <div class="text-margin2">Maintenance Tracker Request Details</div>
         </div>
         <div class="details-font">
-            <table>
-                <tr>
-                    <td>Request ID:</td>
-                    <td>12467</td>
-                </tr>
-                <tr>
-                    <td>Request Type:</td>
-                    <td>Repair</td>
-                </tr>
-                <tr>
-                    <td>Requested By:</td>
-                    <td>Jane Anaekwe</td>
-                </tr>
-                <tr>
-                    <td>Requester's Email:</td>
-                    <td>jane.anaekwe@mail.com</td>
-                </tr>
-                <tr>
-                    <td>Requester's Department:</td>
-                    <td>Merchandising</td>
-                </tr>
-                <tr>
-                    <td>Request Description:</td>
-                    <td>Request Description</td>
-                </tr>
-                <tr>
-                    <td>Request Date:</td>
-                    <td>11-05-2018</td>
-                </tr>
-                <tr>
-                    <td>Status:</td>
-                    <td>Pending</td>
-                </tr>
+            <table id="requestDetailsTable">
             </table>
         </div>
         <div class="button-flex">
+          </p><p id="fail"></p>
             <span>
-                <button class="details-btn approve">Approve</button>
+                <button onclick="approveRequest()" class="details-btn approve">Approve</button>
             </span>
             <span>
-                <button class="details-btn reject">Reject</button>
+                <button onclick="disapproveRequest()" class="details-btn reject">Reject</button>
             </span>
             <span>
-                <button class="details-btn resolve">Resolve</button>
+                <button onclick="resolveRequest()" class="details-btn resolve">Resolve</button>
             </span>
         </div>
         <div>

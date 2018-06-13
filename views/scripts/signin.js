@@ -17,7 +17,11 @@ function signin() {
       if (response.status === 200) {
         response.json().then((data) => {
           window.localStorage.setItem('access_token', data.token);
-          window.location.replace(`user-request.html?${data.message}`);
+          if (data.role === 'User') {
+            window.location.replace(`user-request.html?${data.message}`);
+          } else {
+            window.location.replace(`admin-request.html?${data.message}`);
+          }
         });
       }
       if (response.status === 401) {
@@ -30,4 +34,13 @@ function signin() {
       console.log(error);
     });
 }
-
+window.onload = function success() {
+  const url = window.location.href;
+  console.log(url);
+  if (url.includes('?')) {
+    const message = url.split('?');
+    document.getElementById('success').innerHTML = unescape(message[1]);
+  } else {
+    document.getElementById('success').innerHTML = '';
+  }
+};

@@ -4,9 +4,18 @@
 <head>
     <title> View Requests</title>
     <link rel="stylesheet" href="style.css">
+    <script src='scripts/admin-request.js'> </script>
 </head>
 
-<body>
+<body><p id="success"></p><p id="fail"></p>
+        <div class ="bodymenu">
+                <div>
+                        <div class="menubar2">
+                            <a href="../index.html">Home</a>
+                            <a href="signin.html">Sign Out</a>
+                        </div>
+                  </div> 
+        </div>
     <div>
         <div class="request-top-row">
             <div>
@@ -36,137 +45,18 @@
 
         </div>
         <div class="view-div">
-            <table>
+            <table id="requestTable">
                 <tr>
-                    <th>Request Type</th>
-                    <th>Description</th>
-                    <th>Department</th>
-                    <th>Request Level</th>
-                    <th>Status</th>
-                    <th>Details</th>
+                        <th>Request Type</th>
+                        <th>Requested By</th>
+                        <th>Description</th>
+                        <th>Department</th>
+                        <th>Request Level</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                        <th>Details</th>
 
-                </tr>
-                <tr>
-                    <td>Repair</td>
-                    <td>Request Description</td>
-                    <td>Marketing</td>
-                    <td>Critical</td>
-                    <td>Pending</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Maintenance</td>
-                    <td>Request Description</td>
-                    <td>Sales</td>
-                    <td>Critical</td>
-                    <td>Approved</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Repair</td>
-                    <td>Request Description</td>
-                    <td>Marketing</td>
-                    <td>Major</td>
-                    <td>Pending</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Maintenance</td>
-                    <td>Request Description</td>
-                    <td>Sales</td>
-                    <td>Minor</td>
-                    <td>Approved</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Repair</td>
-                    <td>Request Description</td>
-                    <td>Marketing</td>
-                    <td>Critical</td>
-                    <td>Pending</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Maintenance</td>
-                    <td>Request Description</td>
-                    <td>Sales</td>
-                    <td>Minor</td>
-                    <td>Approved</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Repair</td>
-                    <td>Request Description</td>
-                    <td>Marketing</td>
-                    <td>Critical</td>
-                    <td>Pending</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Maintenance</td>
-                    <td>Request Description</td>
-                    <td>Sales</td>
-                    <td>Minor</td>
-                    <td>Approved</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Repair</td>
-                    <td>Request Description</td>
-                    <td>Marketing</td>
-                    <td>Critical</td>
-                    <td>Pending</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Maintenance</td>
-                    <td>Request Description</td>
-                    <td>Sales</td>
-                    <td>Minor</td>
-                    <td>Approved</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Repair</td>
-                    <td>Request Description</td>
-                    <td>Marketing</td>
-                    <td>Critical</td>
-                    <td>Pending</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Maintenance</td>
-                    <td>Request Description</td>
-                    <td>Sales</td>
-                    <td>Minor</td>
-                    <td>Approved</td>
-                    <td>
-                        <a href="#">View Details</a>
-                    </td>
-                </tr>
-
+                </tr>               
             </table>
         </div>
     </div>
