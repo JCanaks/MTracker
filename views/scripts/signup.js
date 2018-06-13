@@ -13,20 +13,16 @@ function signup() {
     }),
   };
   const request = new Request('api/v1/auth/signup', options);
-  console.log('options');
-  console.log(options);
   fetch(request)
 
     .then((response) => {
       if (response.status === 200) {
         response.json().then((data) => {
-          console.log(data);
           window.location.replace(`user-request.html?${data.message}`);
         });
       }
       if (response.status === 400) {
         response.json().then((data) => {
-          console.log(data);
           if (typeof (data.details) !== 'undefined') {
             document.getElementById('fail').innerHTML = data.details[0].message;
           }

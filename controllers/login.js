@@ -21,7 +21,7 @@ export default function (req, res) {
 
       if (result.rows.length < 1) {
         return res.status(401).json({
-          message: 'Authentication Failed',
+          message: 'Authentication Failed. Please check Login details',
         });
       }
       bcrypt.compare(req.body.userPassword, result.rows[0].userPassword, (err, response) => {
@@ -37,15 +37,15 @@ export default function (req, res) {
             userFullname: result.rows[0].userFullname.trim(),
             department: result.rows[0].department.trim(),
           }, process.env.JWT_SECRET_KEY, {
-            expiresIn: '1h',
+            expiresIn: '3h',
           });
           return res.status(200).json({
-            message: 'Authentication Sucessful',
+            message: 'Authentication Sucessful, You are now Logged in',
             token,
           });
         }
         res.status(401).json({
-          message: 'Authentication Failed',
+          message: 'Authentication Failed. Please check Login details',
         });
       });
     });

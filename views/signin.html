@@ -3,22 +3,32 @@
 <head>
     <title>Sign In</title>
     <link rel="stylesheet" href="style.css">
+    <script src='scripts/signin.js'> </script>
 </head>
-
 <body>
     <div class="signup-body">
-            <div class="signup-logo"><div><img src="Images/wheel-signup-in.png"></div><div class="text-margin">Maintenance Tracker</div></div>
-        <form>
+        <div class="bodymenu">
+            <div>
+                <div class="menubar2">
+                    <a href="index.html">Home</a>
+                    <a href="signup.html">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        <div class="signup-logo">
+            <div>
+                <img src="Images/wheel-signup-in.png">
+            </div>
+            <div class="text-margin">Maintenance Tracker</div>
+        </div>
             <div class="form-flex">
                 <h1>Sign In</h1>
                 <h3>Simple, easy to use maintenance system</h3>
-                <input type="email" placeholder="Email*" required>
-                <input type="password" placeholder="Password*" required>
-                <input type="submit" value="Sign In">
+                <input id="email" type="email" placeholder="Email*" required>
+                <input id="password" type="password" placeholder="Password*" required>
+                <input type="submit" onclick="signin()" value="Sign In">
+                <p id="fail"></p>
             </div>
-
-        </form>
     </div>
 </body>
-
 </html>
