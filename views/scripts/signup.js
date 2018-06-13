@@ -18,7 +18,7 @@ function signup() {
     .then((response) => {
       if (response.status === 200) {
         response.json().then((data) => {
-          window.location.replace(`user-request.html?${data.message}`);
+          window.location.replace(`signin.html?${data.message}`);
         });
       }
       if (response.status === 400) {
