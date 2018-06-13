@@ -26,9 +26,7 @@ export function createRequest(req, res) {
       }
       return res.status(200).json({
         message: 'Request Created',
-        description: request.description,
-        requestType: request.requestType,
-        requestLevel: request.requestLevel,
+        request,
       });
     });
   });

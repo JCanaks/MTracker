@@ -8,7 +8,7 @@ export default function (req, res, next) {
     next();
   } catch (error) {
     return res.status(401).json({
-      message: 'Authentication Failed',
+      message: 'Authentication Failed. Cannot Perform this action',
     });
   }
 }
