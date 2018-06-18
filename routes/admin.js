@@ -1,6 +1,6 @@
 import express, { json } from 'express';
 import verifyToken from '../middleware/verifyToken';
-import { getUserRequests, approveRequest, disapproveRequest, resolveRequest } from '../controllers/admin';
+import { getUserRequests, approveRequest, disapproveRequest, resolveRequest, getFilteredRequests } from '../controllers/admin';
 import { validateRequestParam, requestParamSchemas } from '../validate/paramValidate';
 
 
@@ -8,6 +8,8 @@ const app = express();
 
 app.use(json());
 app.get('/', verifyToken, getUserRequests);
+
+app.get('/:requestType&:requestLevel&:requestDate&:requestId&:department/filter', validateRequestParam(requestParamSchemas.filterSchema), verifyToken, getFilteredRequests);
 
 app.put('/:requestId/approve', validateRequestParam(requestParamSchemas.requestParamSchema), verifyToken, approveRequest);
 

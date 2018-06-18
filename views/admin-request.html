@@ -7,15 +7,17 @@
     <script src='scripts/admin-request.js'> </script>
 </head>
 
-<body><p id="success"></p><p id="fail"></p>
-        <div class ="bodymenu">
-                <div>
-                        <div class="menubar2">
-                            <a href="../index.html">Home</a>
-                            <a href="signin.html">Sign Out</a>
-                        </div>
-                  </div> 
+<body>
+    <p id="success"></p>
+    <p id="fail"></p>
+    <div class="bodymenu">
+        <div>
+            <div class="menubar2">
+                <a href="index.html">Home</a>
+                <a href="signin.html">Sign Out</a>
+            </div>
         </div>
+    </div>
     <div>
         <div class="request-top-row">
             <div>
@@ -24,29 +26,36 @@
             <div class="text-margin1">Maintenance Tracker Request View</div>
         </div>
         <div class="request-form-font set-margin">
-            <form>
-                <div>
-                    <span>Filter By:</span>
-                    <select>
-                        <option value="Repairs">Repairs</option>
-                        <option value="Maintenance">Maintenance</option>
-                        <option value="Critical">Critical</option>
-                        <option value="Minor">Minor</option>
-                        <option value="Major">Major</option>
-                        <option value="Repairs Department">Department</option>
-                    </select>
-                    <input type="date" placeholder="Select date">
-                    <input type="text" placeholder="Enter Request ID">
-                    <input type="text" placeholder="Enter Department">
-                    <input type="submit" value="Search">
+            <div>
+                <span>Filter By:</span>
+                <select id="requestType">
+                    <option value="none">Select Request Type</option>
+                    <option value="Repair">Repair</option>
+                    <option value="Maintenance">Maintenance</option>
+                </select>
+                <select id="requestLevel">
+                    <option value="none">Select Request Level</option>
+                    <option value="Critical">Critical</option>
+                    <option value="Minor">Minor</option>
+                    <option value="Major">Major</option>
+                </select>
+                <input type="date" id="requestDate" placeholder="Select date">
+                <input type="text" id="requestId" placeholder="Enter Request ID">
+                <select id="department">
+                    <option value="none">Select Department</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Human Resource">Human Resource</option>
+                </select>
+                <input type="submit" onclick="getFilteredRequests()" value="Search">
 
-                </div>
-            </form>
-
+            </div>
         </div>
         <div class="view-div">
             <table id="requestTable">
-                <tr>
+                <thead>
+                    <tr>
                         <th>Request Type</th>
                         <th>Requested By</th>
                         <th>Description</th>
@@ -56,7 +65,9 @@
                         <th>Status</th>
                         <th>Details</th>
 
-                </tr>               
+                    </tr>
+                </thead>
+
             </table>
         </div>
     </div>
