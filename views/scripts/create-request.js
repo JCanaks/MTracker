@@ -1,3 +1,41 @@
+function generateTable(tbody, data) {
+  data.forEach((object) => {
+    const tr = document.createElement('tr');
+
+    const requestTypeColumn = document.createElement('td');
+    const descriptionColumn = document.createElement('td');
+    const departmentColumn = document.createElement('td');
+    const requestLevelColumn = document.createElement('td');
+    const requestDateColumn = document.createElement('td');
+    const requestStatusColumn = document.createElement('td');
+    const detailsColumn = document.createElement('td');
+    const link = document.createElement('a');
+    const linkText = document.createTextNode('View Details');
+    link.appendChild(linkText);
+    link.href = `user-request-details.html?${object.requestId}`;
+
+
+    requestTypeColumn.appendChild(document.createTextNode(object.requestType));
+    descriptionColumn.appendChild(document.createTextNode(object.description));
+    departmentColumn.appendChild(document.createTextNode(object.department));
+    requestLevelColumn.appendChild(document.createTextNode(object.requestLevel));
+    requestDateColumn.appendChild(document.createTextNode(object.requestDate.substring(0, 10)));
+    requestStatusColumn.appendChild(document.createTextNode(object.requestStatus));
+    detailsColumn.appendChild(link);
+
+
+    tr.appendChild(requestTypeColumn);
+    tr.appendChild(descriptionColumn);
+    tr.appendChild(departmentColumn);
+    tr.appendChild(requestLevelColumn);
+    tr.appendChild(requestDateColumn);
+    tr.appendChild(requestStatusColumn);
+    tr.appendChild(detailsColumn);
+
+    tbody.appendChild(tr);
+  });
+}
+
 function getRequest() {
   const options = {
     method: 'GET',
@@ -14,28 +52,14 @@ function getRequest() {
       if (response.status === 200) {
         response.json().then((data) => {
           console.log(data);
-          data.forEach((object) => {
-            const requestTable = document.getElementById('requestTable');
-            const requestRow = requestTable.insertRow(1);
+          const requestTable = document.getElementById('requestTable');
 
+          const tbody = document.createElement('tbody');
+          tbody.id = 'tbody';
 
-            const requestType = requestRow.insertCell(0);
-            const description = requestRow.insertCell(1);
-            const department = requestRow.insertCell(2);
-            const requestLevel = requestRow.insertCell(3);
-            const requestDate = requestRow.insertCell(4);
-            const status = requestRow.insertCell(5);
-            const details = requestRow.insertCell(6);
+          generateTable(tbody, data);
 
-
-            requestType.innerHTML = object.requestType;
-            description.innerHTML = object.description;
-            department.innerHTML = object.department;
-            requestLevel.innerHTML = object.requestLevel;
-            requestDate.innerHTML = object.requestDate.substring(0, 10);
-            status.innerHTML = object.requestStatus;
-            details.innerHTML = `<a href="user-request-details.html?${object.requestId}">View Details</a>`;
-          });
+          requestTable.appendChild(tbody);
         });
       }
       if (response.status === 404) {
