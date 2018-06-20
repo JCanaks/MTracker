@@ -23,7 +23,7 @@ function updateRequest() {
         response.json().then((data) => {
           console.log(data);
           document.getElementById('success').innerHTML = data.message;
-          //window.location.reload();
+          // window.location.reload();
         });
       }
       if (response.status === 404) {
@@ -38,7 +38,13 @@ function updateRequest() {
       }
       if (response.status === 400) {
         response.json().then((data) => {
-          document.getElementById('fail').innerHTML = data.message.details[0].message;
+          console.log(data);
+          if (typeof (data.message.details[0]) !== 'undefined') {
+            console.log( data.message.details[0].message);
+            document.getElementById('fail').innerHTML = data.message.details[0].message;
+          } else {
+            document.getElementById('fail').innerHTML = data.message;
+          }
         });
       }
     })

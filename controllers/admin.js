@@ -208,7 +208,6 @@ export function getFilteredRequests(req, res) {
 
       if (Number(req.params.requestId) !== 0 || req.params.requestType !== 'none' || req.params.requestLevel !== 'none' || req.params.requestDate !== '0000-00-00' || req.params.department !== 'none') {
         let sql = 'SELECT * from "request" where';
-        console.log(sql);
         if (Number(req.params.requestId) !== 0) {
           sql += ` "requestId"= ${Number(req.params.requestId)}`;
           if (Number(req.params.requestId) !== 0 && (req.params.requestType !== 'none' || req.params.requestLevel !== 'none' || req.params.requestDate !== '0000-00-00' || req.params.department !== 'none')) {

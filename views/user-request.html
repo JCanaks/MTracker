@@ -8,64 +8,67 @@
 </head>
 
 <body>
-    <p id="success"></p><p id="fail"></p>
-    <div class="bodymenu">
-        <div>
-            <div class="menubar2">
-                <a href="index.html">Home</a>
-                <a href="signin.html">Sign Out</a>
+    <div class="header">
+        <div class="logo">
+            <div>
+                <img src="Images/wheel-logo.png">
             </div>
+            <div>
+                <h6>Maintenance Tracker</h6>
+            </div>
+        </div>
+
+        <div class="menubar">
+            <a href="index.html">Home</a>
+            <a href="signin.html">Sign Out</a>
         </div>
     </div>
     <div>
         <div class="request-top-row">
-            <div>
-                <img src="Images/wheel-review-page.png">
-            </div>
-            <div class="text-margin1">Maintenance Tracker Request View</div>
-            
+            <div class="text-margin1"><div>Maintenance Tracker Request View</div></div>
+            <div class="text-info"><div id="info"> </div></div>
         </div>
         <div class="request-form-font">
-                <div class="request-formlayout-left">
-                    <table>
-                        <tr>
-                            <td>
-                                <span>Request Type:</span>
-                            </td>
-                            <td>
-                                <select id="requestType">
-                                    <option value="Repair">Repair</option>
-                                    <option value="Maintenance">Maintenance</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td >Request Level:</td>
-                            <td>
-                                <select id="requestLevel">
-                                    <option value="Critical">Critical</option>
-                                    <option value="Major">Major</option>
-                                    <option value="Minor">Minor</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="request-formlayout-right">
-                    <table>
-                        <tr>
-                            <td>
-                                <textarea id="description" rows="3" cols="50" placeholder="Type Request Description Here"></textarea>
-                            </td>
-                        </tr>
-                        <tr> 
-                            <td class="butn-align">
-                                <input type="submit" onclick="createRequest()" value="Create Request">
-                            </td>
-                        </tr>
-                    </table>
+            <div class="request-formlayout-left">
+                <table>
+                    <tr>
+                        <td>
+                            <span>Request Type:</span>
+                        </td>
+                        <td>
+                            <select id="requestType">
+                                <option value="Repair">Repair</option>
+                                <option value="Maintenance">Maintenance</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Request Level:</td>
+                        <td>
+                            <select id="requestLevel">
+                                <option value="Critical">Critical</option>
+                                <option value="Major">Major</option>
+                                <option value="Minor">Minor</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="request-formlayout-right">
+                <table>
+                    <tr>
+                        <td>
+                            <textarea id="description" rows="3" cols="50" placeholder="Type Request Description Here"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="butn-align">
+                            <input type="submit" onclick="createRequest()" value="Create Request">
+                        </td>
+                    </tr>
+                </table>
 
-                </div>
+            </div>
         </div>
         <div class="view-div">
             <table id="requestTable">
@@ -82,6 +85,9 @@
             </table>
         </div>
     </div>
-
+    <div class="footer">
+            <p>Maintenance Tracker 2018</p>
+        </div>
 </body>
+
 </html>

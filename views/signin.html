@@ -5,32 +5,37 @@
     <link rel="stylesheet" href="style.css">
     <script src='scripts/signin.js'> </script>
 </head>
+
 <body>
-    <div class="signup-body">
-        <div class="bodymenu">
+    <div class="header">
+        <div class="logo">
             <div>
-                <div class="menubar2">
-                    <a href="index.html">Home</a>
-                    <a href="signup.html">Sign Up</a>
-                </div>
+                <img src="Images/wheel-logo.png">
+            </div>
+            <div>
+                <h6>Maintenance Tracker</h6>
             </div>
         </div>
-        <div class="signup-logo">
-            <div>
-                <img src="Images/wheel-signup-in.png">
-            </div>
-            <div class="text-margin">Maintenance Tracker</div>
-            
+
+        <div class="menubar">
+            <a href="index.html">Home</a>
+            <a href="signup.html">Sign Up</a>
         </div>
-            <div class="form-flex">
-                    <p id="success"></p>
-                <h1>Sign In</h1>
-                <h3>Simple, easy to use maintenance system</h3>
-                <input id="email" type="email" placeholder="Email*" required>
-                <input id="password" type="password" placeholder="Password*" required>
-                <input type="submit" onclick="signin()" value="Sign In">
-                <p id="fail"></p>
-            </div>
+    </div>
+    <div class="signup-body padding">
+        <div class="form-flex ">
+            <p id="success"></p>
+            <h1>Sign In</h1>
+            <h3>Simple, easy to use maintenance system</h3>
+            <input id="email" type="email" placeholder="Email*" required>
+            <input id="password" type="password" placeholder="Password*" required>
+            <input type="submit" onclick="signin()" value="Sign In">
+            <p class = "auth-info" id="info"></p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Maintenance Tracker 2018</p>
     </div>
 </body>
+
 </html>
