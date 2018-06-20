@@ -36,6 +36,20 @@ describe('Test Admin API Routes', () => {
     });
   });
 
+  describe('/GET/:requestType&:requestLevel&:requestDate&:requestId&:department/filter requests', () => {
+    it('Should get Filtered Request by given parameters', (done) => {
+      chai.request(server)
+        .get(`/Repair&Critical&0000-00-00&${1}&Sales/filter`)
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.an('array');
+          res.body.length.should.be.equal(1);
+          done();
+        });
+    });
+  });
+
   describe('/PUT/:requestId/approve requests', () => {
     it('Should approve a request', (done) => {
       chai.request(server)

@@ -10,8 +10,8 @@ let token;
 describe('Test User API Routes', () => {
   const user = {
     userFullname: 'Peter Simon',
+    userPassword: '5555####',
     department: 'Sales',
-    userPassword: '5555',
     userEmail: 'peter@mail.com',
     userPhonenumber: '+2348883772514',
   };
@@ -37,7 +37,7 @@ describe('Test User API Routes', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.an('object');
-          res.body.should.have.property('message').equal('Sucessfull Signup');
+          res.body.should.have.property('message').equal('Sucessfull Signup You can now Login');
           res.body.should.have.property('userFullname').equal(user.userFullname);
           res.body.should.have.property('userEmail').equal(user.userEmail);
           res.body.should.have.property('department').equal(user.department);
@@ -58,8 +58,9 @@ describe('Test User API Routes', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.an('object');
-          res.body.should.have.property('message').equal('Authentication Sucessful');
+          res.body.should.have.property('message').equal('Authentication Sucessful, You are now Logged in');
           res.body.should.have.property('token').should.be.an('object');
+          res.body.should.have.property('role');
           done();
         });
     });
@@ -68,7 +69,6 @@ describe('Test User API Routes', () => {
   describe('/POST requests', () => {
     const request = {
       description: 'PC Fix',
-      department: 'Sales',
       requestType: 'Repair',
       requestLevel: 'Critical',
     };
@@ -81,9 +81,7 @@ describe('Test User API Routes', () => {
           res.should.have.status(200);
           res.body.should.be.an('object');
           res.body.should.have.property('message').equal('Request Created');
-          res.body.should.have.property('description').equal(request.description);
-          res.body.should.have.property('requestType').equal(request.requestType);
-          res.body.should.have.property('requestLevel').equal(request.requestLevel);
+          res.body.should.have.property('request').should.be.an('object');
           done();
         });
     });

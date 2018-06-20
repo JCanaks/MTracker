@@ -18,15 +18,15 @@ function signin() {
         response.json().then((data) => {
           window.localStorage.setItem('access_token', data.token);
           if (data.role === 'User') {
-            window.location.replace(`user-request.html?${data.message}`);
+            window.location.replace('user-request.html');
           } else {
-            window.location.replace(`admin-request.html?${data.message}`);
+            window.location.replace('admin-request.html');
           }
         });
       }
       if (response.status === 401) {
         response.json().then((data) => {
-          document.getElementById('fail').innerHTML = data.message;
+          document.getElementById('info').innerHTML = data.message;
         });
       }
     })

@@ -290,6 +290,58 @@
           "Bearer" : [ ]
         } ]
       }
+    },
+    "/requests/{requestType}&{requestLevel}&{requestDate}&{requestId}&{department}/filter" : {
+      "get" : {
+        "tags" : [ "Admin" ],
+        "summary" : "Filters Requests",
+        "description" : "Filters List of requests according to filter parameters",
+        "parameters" : [ {
+          "name" : "requestId",
+          "in" : "path",
+          "description" : "The request Id",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "requestType",
+          "in" : "path",
+          "description" : "The request type",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "requestLevel",
+          "in" : "path",
+          "description" : "The request level",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "requestDate",
+          "in" : "path",
+          "description" : "The request date",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "department",
+          "in" : "path",
+          "description" : "The user's department",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Filtered requests found"
+          },
+          "401" : {
+            "description" : "Unauthourized Request/Authentication Failed"
+          },
+          "404" : {
+            "description" : "Filtered requests not found"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
     }
   },
   "securityDefinitions" : {

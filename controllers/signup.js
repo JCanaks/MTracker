@@ -56,7 +56,6 @@ export default function (req, res) {
               message: 'Sucessfull Signup You can now Login',
               userFullname: userModel.userFullname,
               userEmail: userModel.userEmail,
-              role: userModel.role,
               department: userModel.department,
             });
           });

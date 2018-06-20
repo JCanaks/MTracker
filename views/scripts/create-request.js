@@ -64,7 +64,12 @@ function getRequest() {
       }
       if (response.status === 404) {
         response.json().then((data) => {
-          document.getElementById('fail').innerHTML = data.message;
+          document.getElementById('info').innerHTML = data.message.toUpperCase();
+        });
+      }
+      if (response.status === 401) {
+        response.json().then((data) => {
+          document.getElementById('info').innerHTML = data.message.toUpperCase();
         });
       }
     })
@@ -76,13 +81,6 @@ function getRequest() {
 window.onload = function success() {
   const url = window.location.href;
   console.log(url);
-  if (url.includes('?')) {
-    const message = url.split('?');
-    document.getElementById('success').innerHTML = unescape(message[1]);
-  } else {
-    document.getElementById('fail').innerHTML = '';
-    document.getElementById('success').innerHTML = '';
-  }
   getRequest();
 };
 
@@ -112,12 +110,12 @@ function createRequest() {
       }
       if (response.status === 401) {
         response.json().then((data) => {
-          document.getElementById('fail').innerHTML = data.message;
+          document.getElementById('info').innerHTML = data.message.toUpperCase();
         });
       }
       if (response.status === 400) {
         response.json().then((data) => {
-          document.getElementById('fail').innerHTML = data.message.details[0].message;
+          document.getElementById('info').innerHTML = data.message.details[0].message.toUpperCase();
         });
       }
     })

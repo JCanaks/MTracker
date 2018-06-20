@@ -39,6 +39,7 @@ export default function (req, res) {
           }, process.env.JWT_SECRET_KEY, {
             expiresIn: '3h',
           });
+
           return res.status(200).json({
             message: 'Authentication Sucessful, You are now Logged in',
             token,

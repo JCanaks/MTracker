@@ -4,16 +4,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="signup-body">
-            <div class ="bodymenu">
+        <div class="header">
+                <div class="logo">
                     <div>
-                            <div class="menubar2">
-                                <a href="index.html">Home</a>
-                                <a href="signin.html">Sign In</a>
-                            </div>
-                      </div> 
+                        <img src="Images/wheel-logo.png">
+                    </div>
+                    <div>
+                        <h6>Maintenance Tracker</h6>
+                    </div>
+                </div>
+        
+                <div class="menubar">
+                    <a href="index.html">Home</a>
+                    <a href="signin.html">Sign In</a>
+                </div>
             </div>
-        <div class="signup-logo"><div><img src="Images/wheel-signup-in.png"></div><div class="text-margin">Maintenance Tracker</div></div>
+    <div class="signup-body">
+        <!-- <div class="signup-logo"><div><img src="Images/wheel-signup-in.png"></div><div class="text-margin">Maintenance Tracker</div></div> -->
             <div class="form-flex">
                 <h1>Sign up</h1>
                 <h3>Simple, easy to use, Maintenance System</h3>
@@ -27,11 +34,15 @@
                     <option value="Human Resource">Human Resource</option>
                 </select>
                 <input type="text" id="phonenumber" placeholder="+2348146614527*" required>
-                <input type="password" id="password" placeholder="Password*" required>
+                <input type="password" size="12" id="password" placeholder="Password*" required>
+                <span class="format">*password must be min 8 chars and max 12. Can only include symbols (#*/_@)  </span>
                 <input type="submit" onclick="signup()" value ="Sign Up">
-                <p id="fail"></p>
+                <p class = "auth-info" id="info"></p>
             </div>
     </div>
 </body>
+<div class="footer">
+        <p>Maintenance Tracker 2018</p>
+    </div>
 <script src='scripts/signup.js'> </script>
 </html>
