@@ -20,7 +20,7 @@
         
                 <div class="menubar">
                     <a href="index.html">Home</a>
-                    <a href="signin.html">Sign Out</a>
+                    <a onclick="logout()" href="#">Sign Out</a>
                 </div>
             </div>
     <div>
@@ -74,7 +74,30 @@
             </table>
         </div>
     </div>
-
+    <div class="request-modal " id="detailsModal">
+        <div class="modal-content">
+            <span onclick="closeDetailsModal()" class="close">&times;</span>
+            <h3>Request Details</h3>
+            <hr>
+            <div class= "details-div"><div class = "details-column1">Request ID:</div><div id="requestIdDetails" class= "details-column2" >0</div></div>
+            <div class= "details-div"><div class = "details-column1">Request Type:</div><div class = "details-column2" id="requestTypeDetails">Request Type</div></div>
+            <div class= "details-div"><div class = "details-column1">Request Level:</div><div class = "details-column2" id="requestLevelDetails">Request Level</div></div>
+            <div class= "details-div"><div class = "details-column1">Requested By:</div><div class= "details-column2" id="requestedByDetails">User</div></div>
+            <div class= "details-div"><div class = "details-column1">Department:</div><div class = "details-column2" id="departmentDetails">Unspecified</div></div>
+            <div class= "details-div"><div class = "details-column1">Date:</div><div class = "details-column2" id="requestDateDetails">0000-00-00</div></div>
+            <div class= "details-div"><div class = "details-column1">Status:</div><div class = "details-column2" id="requestStatusDetails">Unspecified</div></div>
+            <div class= "details-div"><div class = "details-column1">Description:</div><div class = "details-column2" id="descriptionDetails">Request description</div></div>
+            <div class= "details-info" id="details-info"></div>
+            <div class= "details-div">
+            <button onclick="approveRequest()" class="details-btn approve">Approve</button>
+            <button onclick="disapproveRequest()" class="details-btn reject">Disapprove</button>
+            <button onclick="resolveRequest()" class="details-btn resolve">Resolve</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Maintenance Tracker 2018</p>
+    </div>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ export function getUserRequests(req, res) {
           message: 'Unauthorized access',
         });
       }
-      client.query('SELECT * from "request" ', (queryErr, reslt) => {
+      client.query('SELECT * from request order by "requestDate" desc', (queryErr, reslt) => {
         done();
         if (queryErr) {
           return res.status(400).json({
@@ -102,7 +102,7 @@ export function disapproveRequest(req, res) {
       }
 
       if (result.rows.length < 1 || result.rows[0].role.trim() === 'User') {
-        return res.status(400).json({
+        return res.status(401).json({
           message: 'Unauthorized Request',
         });
       }
@@ -152,7 +152,7 @@ export function resolveRequest(req, res) {
       }
 
       if (result.rows.length < 1 || result.rows[0].role.trim() === 'User') {
-        return res.status(400).json({
+        return res.status(401).json({
           message: 'Unauthorized Request',
         });
       }

@@ -4,7 +4,7 @@
 <head>
     <title> View Requests</title>
     <link rel="stylesheet" href="style.css">
-    <script src='scripts/create-request.js'> </script>
+    <script src='scripts/user-request.js'> </script>
 </head>
 
 <body>
@@ -20,56 +20,19 @@
 
         <div class="menubar">
             <a href="index.html">Home</a>
-            <a href="signin.html">Sign Out</a>
+            <a onclick="logout()" href="#">Sign Out</a>
         </div>
     </div>
     <div>
         <div class="request-top-row">
-            <div class="text-margin1"><div>Maintenance Tracker Request View</div></div>
-            <div class="text-info"><div id="info"> </div></div>
-        </div>
-        <div class="request-form-font">
-            <div class="request-formlayout-left">
-                <table>
-                    <tr>
-                        <td>
-                            <span>Request Type:</span>
-                        </td>
-                        <td>
-                            <select id="requestType">
-                                <option value="Repair">Repair</option>
-                                <option value="Maintenance">Maintenance</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Request Level:</td>
-                        <td>
-                            <select id="requestLevel">
-                                <option value="Critical">Critical</option>
-                                <option value="Major">Major</option>
-                                <option value="Minor">Minor</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
+            <div class="text-margin1">
+                <div>Maintenance Tracker Request View</div>
             </div>
-            <div class="request-formlayout-right">
-                <table>
-                    <tr>
-                        <td>
-                            <textarea id="description" rows="3" cols="50" placeholder="Type Request Description Here"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="butn-align">
-                            <input type="submit" onclick="createRequest()" value="Create Request">
-                        </td>
-                    </tr>
-                </table>
-
+            <div class="text-info">
+                <div id="info"> </div>
             </div>
         </div>
+        <div class="request-button-align"><input class="request-button" type="submit" onclick="showModal()" value="Create Request"></div>
         <div class="view-div">
             <table id="requestTable">
                 <tr>
@@ -85,9 +48,48 @@
             </table>
         </div>
     </div>
-    <div class="footer">
-            <p>Maintenance Tracker 2018</p>
+    <div class="request-modal " id="modal">
+        <div class="modal-content">
+            <span onclick="closemodal()" class="close">&times;</span>
+            <h3>Create Request</h3>
+            <hr>
+            <label for="requestType">Request Type:</label>
+            <select name ="requestType" id="requestType">
+                <option value="Repair">Repair</option>
+                <option value="Maintenance">Maintenance</option>
+            </select>
+            <label for="requestLevel">Request Level:</label>
+            <select name="requestLevel" id="requestLevel">
+                <option value="Critical">Critical</option>
+                <option value="Major">Major</option>
+                <option value="Minor">Minor</option>
+            </select>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" rows="4" cols="50" placeholder="Type Request Description Here"></textarea>
+            <div class= "details-info" id="create-info"></div>
+            <input type="submit" onclick="createRequest()" value="Create">
         </div>
+    </div>
+    <div class="request-modal " id="detailsModal">
+        <div class="modal-content">
+            <span onclick="closeDetailsModal()" class="close">&times;</span>
+            <h3>Request Details</h3>
+            <hr>
+            <div class= "details-div"><div class = "details-column1">Request ID:</div><div id="requestId" class= "details-column2" >0</div></div>
+            <div class= "details-div"><div class = "details-column1">Request Type:</div><div class = "details-column2"><input id="requestTypeDetails" type="text" value="Request Type"></div></div>
+            <div class= "details-div"><div class = "details-column1">Request Level:</div><div class = "details-column2"><input id="requestLevelDetails" type="text" value="Request Level" ></div></div>
+            <div class= "details-div"><div class = "details-column1">Requested By:</div><div class= "details-column2" id="requestedBy">User</div></div>
+            <div class= "details-div"><div class = "details-column1">Department:</div><div class = "details-column2" id="department">Unspecified</div></div>
+            <div class= "details-div"><div class = "details-column1">Date:</div><div class = "details-column2" id="requestDate">0000-00-00</div></div>
+            <div class= "details-div"><div class = "details-column1">Status:</div><div class = "details-column2" id="requestStatus">Unspecified</div></div>
+            <textarea class= "description-style" name="description" id="descriptionDetails" rows="4" cols="50" placeholder="Type Request Description Here"></textarea>
+            <div class= "details-info" id="details-info"></div>
+            <input type="submit" onclick="updateRequest()" value="Update">
+        </div>
+    </div>
+    <div class="footer">
+        <p>Maintenance Tracker 2018</p>
+    </div>
 </body>
 
 </html>

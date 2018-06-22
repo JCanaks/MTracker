@@ -38,7 +38,7 @@ export function getallRequests(req, res) {
         message: `${error}`,
       });
     }
-    client.query('SELECT * from "request" where "userId" = $1', [req.userData.userId], (queryError, result) => {
+    client.query('SELECT * from "request" where "userId" = $1 order by "requestDate" desc', [req.userData.userId], (queryError, result) => {
       done();
       if (queryError) {
         return res.status(400).json({
