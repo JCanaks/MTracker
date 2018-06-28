@@ -46,14 +46,9 @@
     cursor: pointer;
 }
 
-.button-flex{
-    display: flex;
-    justify-content: center;
-}
-
 .view-div{
     width: 100%;
-    height: 500px;
+    height: 550px;
     overflow-y: auto;
 }
 
@@ -111,21 +106,6 @@
 
 .view-div tr:nth-child(even) {
     background-color: #dddddd;
-}
-.request-formlayout-left{
-    float: left;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 1em;
-
-}
-
-.request-formlayout-right{
-    float: left;
-    padding-left: 5em;
-    padding-top: 1em;
-    padding-bottom: 1em; 
-    
 }
 .request-form-font{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -211,6 +191,7 @@
 .request-button-align{
     display: flex;
     justify-content: flex-end;
+    width: 50%;
 }
 .request-top-row{
   background-color:  #22c2f7;
@@ -245,6 +226,24 @@
     margin-left:8px;
     padding-top:0.2em;
     padding-bottom:0.1em;
+  }
+  .request-search{
+    background-image: url('Images/search-icon1.png');
+    background-position: 0.3em 0.3em;
+    background-repeat: no-repeat;
+    color:#737373;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size:12pt;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 1em;
+    padding: 0.55em 2.5em 0.55em;
+    width:100%;
+  }
+  .search-div{
+    width:50%;
   }
   .details-font{
     display: flex;
@@ -318,11 +317,7 @@
     font-size: 80%;
     color: rgb(133, 133, 133);
 }
-  /* .text-margin{  
-      font-size: 20pt;
-      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-      font-weight: 900;
-  } */
+
 .text-info{  
     font-size:10pt;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -337,11 +332,6 @@
     font-weight: 900;
     display: flex;
     justify-content: flex-start;
-}
-.text-margin2{  
-    font-size: 18pt;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 900;
 }
 
 .form-flex{
@@ -399,28 +389,7 @@
     font-weight: 900;
     color:  #666;
 }
-.bodymenu{
-    display: flex;
-    justify-content: flex-end;
-    background-color:#ffffff;
-}
-.menubar2 {
-    display: flex;
-    justify-content: flex-end; 
-    background-color:#ffffff;
-}
-.menubar2 a {
-    color:  #666;
-    padding: 14px 20px;
-    text-decoration: none;
-    text-align: center;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size:16pt;
-    font-weight: 900;
-}
-.menubar2 a:hover {
-    color:#e60b00;
-}
+
 .request-modal{
     display: none;
     position: fixed; /* Stay in place */
@@ -563,8 +532,7 @@
     display: flex;
     justify-content: flex-end; 
     background-color:#ffffff;
-    width: 80%;
-    /* margin-left: 55%;  */
+    width: 60%;
 }
 .menubar a {
     color:  #666;
@@ -578,9 +546,10 @@
 .menubar a:hover {
     color:#e60b00;
 }
-.logo{
+.logo {
     display: flex;
     justify-content: flex-start;
+    width:40%;
 }
 .logo h6{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -593,23 +562,24 @@
     margin-left: 20px;
     margin-right:5px;
 }
-.header{
+.header {
     display: flex;
     flex-flow: row;
+    width:100%;
 }
-.landing-body{
+.landing-body {
     padding-top: 5%;
     padding-bottom: 8%;
     text-align: center;
-    background-color: #22c2f7;
+    background-color: #22c2f7;   
 }
-.landing-header{
+.landing-header {
     color:white;
     font-size:38pt; 
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-top: 0.2em;
 }
-.landing-text{
+.landing-text {
     color:white;
     font-size:20pt;
     font-weight: 900;
@@ -638,6 +608,159 @@
     color:  #333333;
     font-size:12pt;
     font-weight: 500;
-    /* padding-top: -0.5em;  */
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+@media only screen and (max-width: 500px){
+    .logo {
+        display: none;
+    }
+    .menubar {
+        width: 100%;
+    }
+    .menubar a {
+        padding: 1em 1em;
+        font-size: 12pt;
+        font-weight: 900;
+    }
+    .landing-header {
+        font-size:25pt; 
+    }
+    .landing-text {
+        font-size:15pt;
+    }
+    .landing-btn {
+        font-size: 20px;
+        
+    }
+    .landing-body {
+        padding: 45% 1% 45%;
+        text-align: center;
+        background-color: #22c2f7;   
+    }
+    .form-flex{
+        margin-right:0%;
+        margin-left:0%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .signup-body{
+        padding: 35% 5% 40%;
+    }
+
+    .form-flex h1{
+        font-size: 1.7em;
+    }
+    .form-flex h3{
+        font-size: 0.9em;
+    }
+    .request-form-font{
+        padding: 1em;
+    }
+    .request-form-font select{
+        width: 100%;
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+    }
+    .request-form-font input[type=date]{
+        width: 100%;
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+    }
+    .request-form-font input[type=text]{
+        width: 100%;
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+    }
+    .request-form-font input[type=submit]{
+        width: 100%;
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+    }
+    .request-form-font div{
+        width: 80%;
+        margin-left: 0.25em; 
+        margin-bottom: 0.5em;  
+    }
+    .text-margin1{  
+        font-size: 11pt;
+    }
+    .request-top-row{
+        display: block;
+      }
+      .set-margin{
+        margin-top: 0.5em;
+    }
+    .modal-content {
+        width: 80%;
+    }
+    .modal-content {
+        font-size:8pt;
+    }
+    .modal-content select{
+        font-size:9pt;
+    }
+    .modal-content textarea{
+        font-size:9pt;
+    }
+    
+    .modal-content input[type=text]{
+        font-size:9pt;
+    }
+    .column-display{
+        display: none;
+    }
+    .details-btn {
+        padding: 17px 14px;
+        font-size: 12px;
+        margin-left:4px;
+    }
+   
+}
+@media only screen and (max-width: 1024px) and (min-width: 501px) { 
+    .landing-body {
+        padding-top: 40%;
+        padding-bottom: 40%;
+        text-align: center;
+        background-color: #22c2f7;   
+    }
+    .signup-body{
+        padding: 20% 5% 50%;
+    }
+    .form-flex{
+        margin-right:10%;
+        margin-left:10%;
+        padding-top: 30px;
+        padding-bottom: 35px;
+    }
+    .request-form-font select{
+        width: 60%;
+        margin-left: 1em;;
+    }
+    .request-form-font input[type=date]{
+        width: 60%;
+        margin-left: 1em;
+    }
+    .request-form-font input[type=text]{
+        width: 60%;
+        margin-left: 1em;
+    }
+    .request-form-font input[type=submit]{
+        width: 60%;
+        margin-left: 1em;
+        margin-right: 0.25em;
+    }
+    .request-form-font div{
+        width: 100%;
+        margin-left: 1em;
+        margin-bottom: 0.5em;   
+    }
+    .text-margin1{  
+        font-size: 10pt;
+    }
+    .request-top-row{
+        display: block;
+      }
+      .modal-content {
+        width: 50%;
+    }
 }
