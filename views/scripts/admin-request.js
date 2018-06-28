@@ -201,11 +201,16 @@ function generateTable(tbody, data) {
 
     const requestTypeColumn = document.createElement('td');
     const requestedByColumn = document.createElement('td');
+    requestedByColumn.className = 'column-display';
     const descriptionColumn = document.createElement('td');
     const departmentColumn = document.createElement('td');
+    departmentColumn.className = 'column-display';
     const requestLevelColumn = document.createElement('td');
+    requestLevelColumn.className = 'column-display';
     const requestDateColumn = document.createElement('td');
+    requestDateColumn.className = 'column-display';
     const requestStatusColumn = document.createElement('td');
+    requestStatusColumn.className = 'column-display';
     const detailsColumn = document.createElement('td');
     const button = document.createElement('button');
     const buttonText = document.createTextNode('View Details');

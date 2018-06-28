@@ -33,19 +33,30 @@
                 <div id="info"> </div>
             </div>
         </div>
-        <div class="request-button-align"><input class="request-button" type="submit" onclick="showModal()" value="Create Request"></div>
+        <div class="header">
+            <div class="search-div">
+                <input class="request-search" type="text" id="searchInput" onkeyup="search()" placeholder="Search...."
+                    title="Type in a description">
+            </div>
+            <div class="request-button-align">
+                <input class="request-button" type="submit" onclick="showModal()" value="Create Request">
+            </div>
+        </div>
         <div class="view-div">
             <table id="requestTable">
-                <tr>
-                    <th>Request Type</th>
-                    <th>Description</th>
-                    <th>Department</th>
-                    <th>Request Level</th>
-                    <th>Request Date</th>
-                    <th>Status</th>
-                    <th>Details</th>
+                <thead>
+                    <tr>
+                        <th>Request Type</th>
+                        <th>Description</th>
+                        <th class="column-display">Department</th>
+                        <th class="column-display">Request Level</th>
+                        <th class="column-display">Request Date</th>
+                        <th class="column-display">Status</th>
+                        <th>Details</th>
 
-                </tr>
+                    </tr>
+                </thead>
+
             </table>
         </div>
     </div>
@@ -55,7 +66,7 @@
             <h3>Create Request</h3>
             <hr>
             <label for="requestType">Request Type:</label>
-            <select name ="requestType" id="requestType">
+            <select name="requestType" id="requestType">
                 <option value="Repair">Repair</option>
                 <option value="Maintenance">Maintenance</option>
             </select>
@@ -67,7 +78,7 @@
             </select>
             <label for="description">Description:</label>
             <textarea name="description" id="description" rows="4" cols="50" placeholder="Type Request Description Here"></textarea>
-            <div class= "details-info" id="create-info"></div>
+            <div class="details-info" id="create-info"></div>
             <input type="submit" onclick="createRequest()" value="Create">
         </div>
     </div>
@@ -76,15 +87,40 @@
             <span onclick="closeDetailsModal()" class="close">&times;</span>
             <h3>Request Details</h3>
             <hr>
-            <div class= "details-div"><div class = "details-column1">Request ID:</div><div id="requestId" class= "details-column2" >0</div></div>
-            <div class= "details-div"><div class = "details-column1">Request Type:</div><div class = "details-column2"><input id="requestTypeDetails" type="text" value="Request Type"></div></div>
-            <div class= "details-div"><div class = "details-column1">Request Level:</div><div class = "details-column2"><input id="requestLevelDetails" type="text" value="Request Level" ></div></div>
-            <div class= "details-div"><div class = "details-column1">Requested By:</div><div class= "details-column2" id="requestedBy">User</div></div>
-            <div class= "details-div"><div class = "details-column1">Department:</div><div class = "details-column2" id="department">Unspecified</div></div>
-            <div class= "details-div"><div class = "details-column1">Date:</div><div class = "details-column2" id="requestDate">0000-00-00</div></div>
-            <div class= "details-div"><div class = "details-column1">Status:</div><div class = "details-column2" id="requestStatus">Unspecified</div></div>
-            <textarea class= "description-style" name="description" id="descriptionDetails" rows="4" cols="50" placeholder="Type Request Description Here"></textarea>
-            <div class= "details-info" id="details-info"></div>
+            <div class="details-div">
+                <div class="details-column1">Request ID:</div>
+                <div id="requestId" class="details-column2">0</div>
+            </div>
+            <div class="details-div">
+                <div class="details-column1">Request Type:</div>
+                <div class="details-column2">
+                    <input id="requestTypeDetails" type="text" value="Request Type">
+                </div>
+            </div>
+            <div class="details-div">
+                <div class="details-column1">Request Level:</div>
+                <div class="details-column2">
+                    <input id="requestLevelDetails" type="text" value="Request Level">
+                </div>
+            </div>
+            <div class="details-div">
+                <div class="details-column1">Requested By:</div>
+                <div class="details-column2" id="requestedBy">User</div>
+            </div>
+            <div class="details-div">
+                <div class="details-column1">Department:</div>
+                <div class="details-column2" id="department">Unspecified</div>
+            </div>
+            <div class="details-div">
+                <div class="details-column1">Date:</div>
+                <div class="details-column2" id="requestDate">0000-00-00</div>
+            </div>
+            <div class="details-div">
+                <div class="details-column1">Status:</div>
+                <div class="details-column2" id="requestStatus">Unspecified</div>
+            </div>
+            <textarea class="description-style" name="description" id="descriptionDetails" rows="4" cols="50" placeholder="Type Request Description Here"></textarea>
+            <div class="details-info" id="details-info"></div>
             <input type="submit" onclick="updateRequest()" value="Update">
         </div>
     </div>

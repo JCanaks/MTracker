@@ -1,3 +1,27 @@
+function search() {
+  const searchInput = document.getElementById('searchInput');
+  const filter = searchInput.value.toUpperCase();
+  const table = document.getElementById('requestTable');
+  const tr = table.getElementsByTagName('tr');
+
+  for (let i = 0; i < tr.length; i++) {
+    requestTypecolumn = tr[i].getElementsByTagName('td')[0];
+    descriptionColumn = tr[i].getElementsByTagName('td')[1];
+    departmentColumn = tr[i].getElementsByTagName('td')[2];
+    requestLevelColumn = tr[i].getElementsByTagName('td')[3];
+    requestDateColumn = tr[i].getElementsByTagName('td')[4];
+    requestStatusColumn = tr[i].getElementsByTagName('td')[5];
+
+    if (requestTypecolumn && descriptionColumn && departmentColumn
+      && requestLevelColumn && requestDateColumn && requestStatusColumn) {
+      if (requestTypecolumn.innerHTML.toUpperCase().indexOf(filter) > -1 || descriptionColumn.innerHTML.toUpperCase().indexOf(filter) > -1 || departmentColumn.innerHTML.toUpperCase().indexOf(filter) > -1 || requestLevelColumn.innerHTML.toUpperCase().indexOf(filter) > -1 || requestDateColumn.innerHTML.toUpperCase().indexOf(filter) > -1 || requestStatusColumn.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = '';
+      } else {
+        tr[i].style.display = 'none';
+      }
+    }
+  }
+}
 function updateRequest() {
   const options = {
     method: 'PUT',
@@ -131,9 +155,13 @@ function generateTable(tbody, data) {
     const requestTypeColumn = document.createElement('td');
     const descriptionColumn = document.createElement('td');
     const departmentColumn = document.createElement('td');
+    departmentColumn.className = 'column-display';
     const requestLevelColumn = document.createElement('td');
+    requestLevelColumn.className = 'column-display';
     const requestDateColumn = document.createElement('td');
+    requestDateColumn.className = 'column-display';
     const requestStatusColumn = document.createElement('td');
+    requestStatusColumn.className = 'column-display';
     const detailsColumn = document.createElement('td');
     const button = document.createElement('button');
     const buttonText = document.createTextNode('View Details');
@@ -143,7 +171,6 @@ function generateTable(tbody, data) {
       viewDetails(object.requestId);
       modal.style.display = 'block';
     };
-
 
     requestTypeColumn.appendChild(document.createTextNode(object.requestType));
     descriptionColumn.appendChild(document.createTextNode(object.description));
