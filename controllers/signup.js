@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import userModel from '../models/user';
 import pool from '../middleware/pool';
 
@@ -46,17 +47,36 @@ export default function (req, res) {
             });
           }
           client.query('INSERT INTO "userAccount" ("userFullname", role, "userPassword", department, "userEmail", "userPhonenumber")VALUES($1, \'User\', $2, $3, $4, $5 )', [userModel.userFullname, userModel.userPassword, userModel.department, userModel.userEmail, userModel.userPhonenumber], (queryError2, result2) => {
-            done();
             if (queryError2) {
               return res.status(500).json({
                 message: `${queryError2}`,
               });
             }
-            return res.status(200).json({
-              message: 'Sucessfull Signup You can now Login',
-              userFullname: userModel.userFullname,
-              userEmail: userModel.userEmail,
-              department: userModel.department,
+            client.query('SELECT * from "userAccount" where "userEmail" = $1', [req.body.userEmail], (queryError3, result3) => {
+              done();
+              if (queryError3) {
+                return res.status(500).json({
+                  message: `${queryError3}`,
+                });
+              }
+              if (result3.rows.length > 0) {
+                const token = jwt.sign({
+                  email: result3.rows[0].userEmail.trim(),
+                  userId: result3.rows[0].userId,
+                  userFullname: result3.rows[0].userFullname.trim(),
+                  department: result3.rows[0].department.trim(),
+                }, process.env.JWT_SECRET_KEY, {
+                  expiresIn: '3h',
+                });
+                return res.status(200).json({
+                  message: 'Sucessfull Signup You can now make requests',
+                  userFullname: result3.rows[0].userFullname.trim(),
+                  userEmail: result3.rows[0].userEmail.trim(),
+                  department: result3.rows[0].department.trim(),
+                  role: result3.rows[0].role,
+                  token,
+                });
+              }
             });
           });
         });

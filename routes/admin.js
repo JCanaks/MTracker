@@ -1,4 +1,5 @@
 import express, { json } from 'express';
+import cors from 'cors';
 import verifyToken from '../middleware/verifyToken';
 import { getUserRequests, approveRequest, disapproveRequest, resolveRequest, getFilteredRequests } from '../controllers/admin';
 import { validateRequestParam, requestParamSchemas } from '../validate/paramValidate';
@@ -7,6 +8,7 @@ import { validateRequestParam, requestParamSchemas } from '../validate/paramVali
 const app = express();
 
 app.use(json());
+app.use(cors());
 app.get('/', verifyToken, getUserRequests);
 
 app.get('/:requestType&:requestLevel&:requestDate&:requestId&:department/filter', validateRequestParam(requestParamSchemas.filterSchema), verifyToken, getFilteredRequests);

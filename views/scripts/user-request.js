@@ -14,7 +14,12 @@ function search() {
 
     if (requestTypecolumn && descriptionColumn && departmentColumn
       && requestLevelColumn && requestDateColumn && requestStatusColumn) {
-      if (requestTypecolumn.innerHTML.toUpperCase().indexOf(filter) > -1 || descriptionColumn.innerHTML.toUpperCase().indexOf(filter) > -1 || departmentColumn.innerHTML.toUpperCase().indexOf(filter) > -1 || requestLevelColumn.innerHTML.toUpperCase().indexOf(filter) > -1 || requestDateColumn.innerHTML.toUpperCase().indexOf(filter) > -1 || requestStatusColumn.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      if (requestTypecolumn.innerHTML.toUpperCase().indexOf(filter) > -1
+        || descriptionColumn.innerHTML.toUpperCase().indexOf(filter) > -1
+        || departmentColumn.innerHTML.toUpperCase().indexOf(filter) > -1
+        || requestLevelColumn.innerHTML.toUpperCase().indexOf(filter) > -1
+        || requestDateColumn.innerHTML.toUpperCase().indexOf(filter) > -1
+        || requestStatusColumn.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = '';
       } else {
         tr[i].style.display = 'none';

@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import cors from 'cors';
 import express, { json } from 'express';
 import verifyToken from '../middleware/verifyToken';
 import signup from '../controllers/signup';
@@ -10,6 +11,7 @@ import { createRequest, getallRequests, getRequest, updateRequest } from '../con
 
 dotenv.config();
 const app = express();
+app.use(cors());
 
 
 app.use(json());
