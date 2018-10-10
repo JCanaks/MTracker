@@ -37,10 +37,12 @@ describe('Test User API Routes', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.an('object');
-          res.body.should.have.property('message').equal('Sucessfull Signup You can now Login');
+          res.body.should.have.property('message').equal('Sucessfull Signup You can now make requests');
           res.body.should.have.property('userFullname').equal(user.userFullname);
           res.body.should.have.property('userEmail').equal(user.userEmail);
           res.body.should.have.property('department').equal(user.department);
+          res.body.should.have.property('role');
+          res.body.should.have.property('token');
           done();
         });
     });
