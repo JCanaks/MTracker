@@ -1,3 +1,54 @@
+/* Base Styles -------------------- */
+body {
+    margin: 0;
+}
+
+nav li { 
+    display: inline;
+    margin-right: 15px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Main styles ------------------ */
+/*some change */
+.navmenu,
+.label-logo { 
+    display: inline;
+}
+
+.navmenu {
+    float: right;
+    font-size: 1.2em;
+    padding-top: 7px;
+    margin-right: 100px;
+}
+
+.label-logo {
+    float: left;
+    font-size: 1.5em;
+    margin-left: 100px;
+}
+/* Pseudo-classes ------------------ */
+
+/* Float Clearfix ------------------ */
+.group:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+
+
+
+/* ================================= OLD =========================================================== 
+==================================== CSS ===========================================================
+=================================== BELOW ==========================================================
+============================== CHANGE IS COMMING :) ===============================================*/
+
 .update {
     background-color: #ff554d;
     border-radius: 10px;
